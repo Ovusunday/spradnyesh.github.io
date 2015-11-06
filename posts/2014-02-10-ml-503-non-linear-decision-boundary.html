@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-503: Non Linear Decision Boundary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">10 February, 2014</div>
+        
+    </div>
+    <h2>ml-503: Non Linear Decision Boundary</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi there! Welcome back to this series of posts on ML algorithms. In the last <a href='http://www.golb.in/ml-502-hypothesis-representation-and-decision-boundary-52.html'>post</a> we looked at the hypothesis representation and decision boundary concepts in the logistic regression ML algorithm. Today we will look at some more examples of decision boundaries and get a deeper understanding regarding them.</p><p>But, let's do a quick review of what we learned last time so that we can continue from there. We defined our hypothesis function as:</p><blockquote><p> h<sub>&theta;</sub>(x) = g(&theta;' * x) </p></blockquote><p>where,</p><blockquote><p> g(z) = 1 / (1 + e<sup>-z</sup>) </p></blockquote><p>is the sigmoid function. We also saw an important result that:</p><blockquote><p> "y = 1" if (&theta;' &#42;x) &gt;= 0 </p></blockquote><p>and</p><blockquote><p> "y = 0" if (&theta;' &#42;x) &lt; 0 </p></blockquote><p>The decision boundary we saw last time was a simple straight line. But what if our dataset is like below?</p><p>![]()</p><p>If you remember what we discussed in one of the previous <a href='http://www.golb.in/ml-404-feature-choice-and-polynomial-regression-48.html'>posts</a>, then the solution is simple. We should use higher order polynomials. Let us define our hypothesis function as:</p><blockquote><p> h<sub>&theta;</sub>(x) = &theta;<sub>0</sub> + &theta;<sub>1</sub> x1 + &theta;<sub>2</sub> x2 + &theta;<sub>3</sub> x1<sup>2</sup> + &theta;<sub>4</sub> x2<sup>2</sup> </p></blockquote><p>And, furthermore, let us say that we have somehow found the correct values for &theta; already as:</p><blockquote><p> &theta; = [-1 0 0 1 1]' </p></blockquote><p>I know that we have not yet looked at how to find the optimal values of &theta; for logistic regression. But fear not, we will get there.</p><p>Coming back to the problem at hand. When we use the above &theta;, we get the following hypothesis function output:</p><p>![]()</p><p>You see that the decision boundary is now a circle, and</p><blockquote><p> "y = 1" if x1<sup>2</sup> + x2<sup>2</sup> &gt;= 1 </p></blockquote><p>and</p><blockquote><p> "y = 0" if x1<sup>2</sup> + x2<sup>2</sup> &lt; 1 </p></blockquote><p>Similarly, if we take more complex higher order polynomials like,</p><blockquote><p> h<sub>&theta;</sub>(x) = &theta;<sub>0</sub> + &theta;<sub>1</sub> x1 + &theta;<sub>2</sub> x2 + &theta;<sub>3</sub> x1<sup>2</sup> + &theta;<sub>4</sub> x2<sup>2</sup> + &theta;<sub>5</sub> x1x2 + &theta;<sub>5</sub> x1<sup>2</sup> + &hellip; </p></blockquote><p>then we can get even more complex forms of the decision boundary which will help us correctly classify our dataset.</p><p>I hope you are with me till here, and are loving reading about these algorithms as much as I am loving writing about them. In the next post we will take a look at the methods to compute the optimal values of &theta;. So keep watching this space!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">&laquo; ml-504: Cost Function and Logistic Regression</a>
+        
+        
+        <a class="right" href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

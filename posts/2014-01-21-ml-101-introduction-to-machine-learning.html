@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-101: Introduction to Machine Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">21 January, 2014</div>
+        
+    </div>
+    <h2>ml-101: Introduction to Machine Learning</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Facts:</p><ul><li>As some of my friends on twitter and facebook know, I recently completed the "Machine Learning" course on <a href='https://www.coursera.org/'>coursera</a>, taught by "Andrew Ng" from Stanford university. I managed to get a 100% score on the programming assignments and the review tests (mean attempt of 2.22 on the tests), but did not get a completion certificate because I missed the "completion survey" before the deadline</li><li>While we teach, we learn.  -- Roman philosopher Seneca (see <a href='http://en.wikipedia.org/wiki/Learning&#95;by&#95;teaching'>this</a> <a href='http://ideas.time.com/2011/11/30/the-protege-effect/'>this</a>, <a href='http://ezinearticles.com/?The-Best-Way-to-Learn-is-to-Teach&amp;amp;id=560127'>this</a>, and lots more)</li></ul><p>Combining these 2 facts I thought that it would be great to try and explain what I have learned during the last few weeks to all of you. This has the advantages of:</p><ul><li>My understanding of the subject will improve</li><li>I've been having the "writers block" for the last 2-3 days, and was not able to think of what to write here on <a href='http://www.golb.in/'>Golbin</a>. Problem solved ;)</li><li>Maybe someone will benefit from this and will get inspired to try it out. Maybe I will get someone to collaborate on a project with, who knows?So lets start! Wait! Before starting, let me put down a few notes:</li><li>I have signed the "code of honor" on coursera, so do NOT expect to find assignment questions and answers to them here</li><li>I will try to use different examples (than in the course) to explain. This is mostly so that by applying the concepts to different things, I believe I will be able to improve my understanding better</li></ul><p>Ok, lets start now. Really start! First some definitions:</p><blockquote><p> [Machine Learning is a] field of study that gives computers the ability to learn without being explicitly programmed. &amp;ndash;Arthur Samuel (1959) </p></blockquote><blockquote><p> A computer program is said to learn from experience E with respect to some task T and some performance measure P, if it's performance on T, as measured by P, improves with experience E. &amp;ndash; Tom Mitchell (1998) </p></blockquote><p>The 2nd definition is a mathematically more well-posed learning problem, but maybe a bit more difficult to understand. The best way to understand the concept is through the following example: In 1959 Arthur Samuel created a checkers program even though he himself was not a good checkers player. What he did was for the program to play tens of thousands of games against itself, and learn from the various board positions that it encountered during the games. That is, when a program is not told the rules of the game, but learns them itself by observation, we can call it a machine learning program.</p><p>Machine learning is not a new field, but has been gaining a lot of interest and popularity in the last few years. It has grown out of "Artificial Intelligence" stream of computer science, but heavily uses other subjects like statistics for example.</p><p>In fact, today, machine learning algorithms are very pervasive, especially on the web. You are surrounded by them, although you might not notice them. Take the following for example:</p><ul><li>Every time you use <a href='http://www.google.com/'>google</a> search, you are using a algorithm that has been automatically learned by machine(s) to show relevant results to you</li><li>When you use email, there is a spam classifier algorithm working in the background to automatically send spam messages to the junk folder</li><li>Even the various ads that you see on web pages; some machine has learnt which ads it should show to you so as to increase the probability of you clicking on themSo what other kinds of programs can we write using ML?</li><li>ML is very good for programs that we cannot write by hand; either because we don't understand the concept totally ourselves, or because it is too difficult to map the problem into the computer domain. For example, autonomous helicopter navigation, handwriting recognition, NLP (natural language processing), computer vision, etc</li><li>Self customizing programs: When <a href='http://www.amazon.com/'>amazon</a> (or <a href='https://www.netflix.com/'>netflix</a>, etc) shows you recommendations of what to buy next, this program should be different for every user. Obviously it is not possible to make a million different copies (with different behavior and hence algorithm) of the recommender program. ML shines beautifully when solving such problems</li><li>Database mining: These days companies and organizations collect a huge amount of data (in terabytes), and in most cases we don't know what gems are hidden inside. This is where ML clustering algorithms can be used</li><li>and the list goes on and on</li></ul><p>So that's it for today. We will slowly dig deeper into the subject in the upcoming posts. So keep watching this space :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-22-ml-102-supervised-learning.html">&laquo; ml-102: Supervised Learning</a>
+        
+        
+        <a class="right" href="/posts/2014-01-20-org-mode.html">Emacs: org-mode &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

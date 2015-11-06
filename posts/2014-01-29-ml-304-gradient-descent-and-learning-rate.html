@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-304: Gradient Descent and Learning Rate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">29 January, 2014</div>
+        
+    </div>
+    <h2>ml-304: Gradient Descent and Learning Rate</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi. In the last <a href="http://www.golb.in/ml-303-gradient-descent-41.html">post</a>, we learnt about the "gradient descent" algorithm that is used to minimize our cost function "J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)". Gradient descent algorithm was defined as:</p><pre><code>repeat until convergence {
+  Θj = Θj - α δ/δΘj J&#40;Θ0, Θ1&#41; &#40;for j = 0, 1&#41;
+}
+</code></pre><p>where,</p><ul><li><b>&alpha;</b>: is called the "learning rate"</li><li><b>&delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)</b>: is the partial derivative of the cost function (J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)) with respect to &Theta;<sub>j</sub></li></ul><p>Today we will try to understand the working of the gradient descent algorithm itself. We will also learn about the role of the learning rate "&alpha;". Let us start by understanding a single step of the algorithm, viz</p><blockquote><p> &Theta;j = &Theta;j - &alpha; &delta;/&delta;&Theta;j J(&Theta;0, &Theta;1) (for j = 0, 1) </p></blockquote><p>As we have mentioned above, the term "&delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)" is the partial derivative of the cost function (J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)) with respect to &Theta;<sub>j</sub>. The partial derivative of a function defines the "slope" of that function at a given point. That is, in this case, this term defines the slope of our cost function at a given point.</p><p>![]()</p><p>We also know, from this <a href="http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html">post</a>, that the term &Theta; defines the slope of our hypothesis function "h(x)". So in a single step of the gradient descent algorithm, we are trying to change the slope &Theta; by a small amount (given by &alpha; times the slope of J).</p><p>![]()</p><p>How "small" is the change, is what is determined by the learning rate "&alpha;". If "&alpha;" is too small, then the changes will be very small and our gradient descent implementation will take a long time to converge (see the green points in the graph below). Whereas if "&alpha;" is too large, then gradient descent will take very big steps, and it is even possible for it to overshoot the minimum value and even diverge. But if "&alpha;" is just right (see red points in graph), then the implementation will take just the right steps and converge soon to the local minimum.</p><p>![]()</p><p>As such, the gradient descent algorithm can be used to find any minima (local or global). But because we have defined our cost function in such a way, that it is always convex and always has a global minima, our gradient descent implementation will always find the global minima!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-30-ml-305-univariate-linear-regression.html">&laquo; ml-305: Univariate Linear Regression</a>
+        
+        
+        <a class="right" href="/posts/2014-01-28-ml-303-gradient-descent.html">ml-303: Gradient Descent &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

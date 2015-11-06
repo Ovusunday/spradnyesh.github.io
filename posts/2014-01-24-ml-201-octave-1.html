@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-201: octave -- part - 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">24 January, 2014</div>
+        
+    </div>
+    <h2>ml-201: octave -- part - 1</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi again! In the previous posts <a href='http://www.golb.in/ml-101-introduction-to-machine-learning-33.html'>here</a>, <a href='http://www.golb.in/ml-102-supervised-learning-34.html'>here</a> and <a href='http://www.golb.in/ml-103-unsupervised-learning-and-recommender-systems-35.html'>here</a>, we did pretty theoretical and very basic introduction. But starting now (notice the <b>201</b> in the title of the article?), we will be digging deeper into specific algorithms, their working, intuition and implementation. But before we go there, we need to get familiar with some background setup.</p><p>Firstly, you should have atleast some basic knowledge of the following disciplines of mathematics:</p><ul><li><a href='http://en.wikipedia.org/wiki/Linear&#95;algebra'>linear algebra</a></li><li><a href='http://en.wikipedia.org/wiki/Matrix&#95;(mathematics'>matrix theory</a>)</li><li><a href='http://en.wikipedia.org/wiki/Calculus'>calculus</a></li></ul><p>Don't worry, you don't need to be gurus, just basic knowledge is good enough to understand the intuition of and implement ML algorithms correctly.</p><p>Furthermore, for this series I will use the <a href='https://www.gnu.org/software/octave/'>octave</a> programming language because:</p><ul><li>that is what was used in the <a href='https://www.coursera.org/'>coursera</a> course that I recently completed (which is what prompted this series)</li><li>it is extremely good for rapid prototyping (most algorithms can be implemented in just a few lines of code)</li><li>the smartest thing that you can do when implementing a ML algorithm is "rapid prototyping" to avoid getting trapped in a black hole of wrong effort which does not lead to a effective solution, but simply wastes timeSo without further ado, lets start with getting a little bit familiar with the octave programming language:</li><li>Octave is a <a href='http://www.gnu.org/'>gnu</a> software and its installers are available for OS X, windoZZZe, and linux <a href='http://www.gnu.org/software/octave/download.html'>here</a></li><li>It is a programming language made specifically for ML and has good library support</li><li>However, it is very slow and hence might not be suitable for production programs</li><li>You can execute octave commands both from the command line, or even a GUI</li></ul><p>Octave is very well documented and the complete documentation is available <a href='http://www.gnu.org/software/octave/doc/interpreter/index.html'>here</a>, but we will go through some of the most commonly used commands (and more during the actual algorithm discussion). I have only used the command line version during the course, and that is what I will explain here. Maybe the GUI would be much easier for you, YMMV.</p><p><b>Basic</b>: The most frequently used command in octave (for us beginners) is, obviously the "help" command ;). The basic format of the help command is</p><pre><code>help &lt;command-name&gt;
+</code></pre><p>For example "help plot" shows the help section for the "plot" command</p><p>Some other basic commands are:</p><ul><li>the '%' character starts a comment. If it comes in the middle of a line, then the part after the '%' is the comment. eg</li></ul><pre><code>% this whole line is a command
+a = 5; % a is assigned the value 5
+</code></pre><ul><li>a ';' suppresses the output. so for eg</li></ul><pre><code>a = 5 % this will print 'a = 5'
+a = 5; % this will not print anything
+</code></pre><ul><li>inside a matrix definition, the ';' character takes the remaining numbers onto the next row of the matrix. eg</li></ul><pre><code>A = &#91;1 2 3; 2 3 4; 3 4 5&#93;
+</code></pre><p>is a 3x3 matrix of the form</p><p><table class="table table-bordered"> <tbody> <tr> <td> 1</td> <td> 2</td> <td> 3</td> </tr> <tr> <td> 2</td> <td> 3</td> <td> 4</td> </tr> <tr> <td> 3</td> <td> 4</td> <td> 5</td> </tr> </tbody> </table></p><ul><li>Matrices (and vectors (single dimension matrices)) are the "the" way of representing data and performing computations on them during the implementation of ML algorithms in octave. So obviously, octave has a great support for matrix creation and manipulation. Some of the frequently used operations are:<ul><li>A = zeros(2, 3) % will create a 2x3 matrix filled with the element zero</li><li>B = ones(3, 2) % will create a 3x2 matrix filled with the element one</li><li>B2 = 2 * ones(3, 2) % will create a 3x2 matrix filled with the element two</li><li>C = rand(3, 3) % will create a 3x3 matrix filled with numbers between 0 and 1 with a uniform distribution</li><li>D = eye(5) % will create a 5x5 <a href='http://en.wikipedia.org/wiki/Identity&#95;matrix'>identity matrix</a></li></ul></li></ul><p><b>Loading, saving and plotting data</b>: Of course the next most common operation that you would do while implementing a ML algorithm would be loading, saving and plotting of data. Octave supports these operations via:</p><ul><li>pwd: shows the current working directory</li><li>cd <new-directory>: change to another directory (where data and/or code exists, so that you can load them)</li><li>data = load(<file-name>): load data from file into variable named "data"</li><li>who: shows what variables are present in the memory in the current scope</li><li>whos: shows what variables are present in the memory, and show their size (and other information)</li><li>clear [<variable-name>+] : remove variable(s) from memory</li><li>save <file-name> <variable-name> : save value of variable (may be a vector or a matrix) into the named file</li></ul><p>I think that is a big enough bite for today. We will continue with some more octave in the next post, so keep watching this space :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-25-ml-202-octave-2.html">&laquo; ml-202: octave -- part - 2</a>
+        
+        
+        <a class="right" href="/posts/2014-01-23-ml-103-unsupervised-learning-and-recommender-systems.html">ml-103: Unsupervised learning and Recommender systems &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: Emacs: org-mode</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">20 January, 2014</div>
+        
+    </div>
+    <h2>Emacs: org-mode</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by "killing the rat!" (see <a href='http://www.golb.in/kill-that-rat-28.html'>here</a>, <a href='http://www.golb.in/stumpwm-29.html'>here</a>, <a href='http://www.golb.in/vimperator-30.html'>here</a> and <a href='http://www.golb.in/vimperator-part-2-31.html'>here</a> for previous post on the "kill that rat" series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too</p><ul><li>improving my writing skills</li><li>writing/blogging improves cognitive skills (see <a href='http://www.golb.in/to-blog-or-not-to-blog-5.html'>here</a>)</li><li>teaching is the best form of learning</li></ul><p>So lets continue the series and learn about the super-awesome <a href='http://orgmode.org/'>org-mode</a> in <a href='http://www.gnu.org/software/emacs/tour/'>emacs</a>. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.</p><p>In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc</p><p>Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see <a href='http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications'>here</a>) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.</p><p>Ok, enough round-about stories. Lets get to the real point with some concrete features:</p><p><strong>Plain Text Files</strong>: org-mode uses plain text files to store all information, which means that</p><ul><li>you are never tied up to any proprietary format, and can move to some other tool if you wish</li><li>you can version-control your data files (visit the git-week series <a href='http://www.golb.in/git-week-part-1-13.html'>here</a>, <a href='http://www.golb.in/git-week-part-2-14.html'>here</a>, <a href='http://www.golb.in/git-week-part-3-15.html'>here</a>, <a href='http://www.golb.in/git-week-part-4-16.html'>here</a> and <a href='http://www.golb.in/git-week-part-5-17.html'>here</a>)</li></ul><p><strong>Section-ify</strong>: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this the above image. As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely "backlog", "notes", etc and sub-sections, namely "wrote (no published)...", etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.</p><p><strong>Agendas</strong>: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.</p><p><img src="http://orgmode.org/img/planning.jpg" width=600 /></p><p><img src="http://orgmode.org/img/agenda.jpg" width=600 /></p><p><strong>Clocking</strong>: </p><blockquote><p> You cannot manage what you cannot measure. --F. John Reh </p></blockquote><p>Well, we have been talking about improving productivity, but how can we do that if we don't measure it? Wouldn't it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn't matter what level it is at). Then you can simply take the cursor to that task and press 'C-c C-x C-i' to clock-in and 'C-c C-x C-o' to clock-out of the task. With practice it becomes second nature. And what's more org-mode even shows you a cool summary view</p><p><img src="http://orgmode.org/img/clocking.jpg" width=600 /></p><p><strong>Tables</strong>: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.</p><p><img src="http://orgmode.org/img/table2.jpg" width=600 /></p><p><strong>Exporting</strong>: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.</p><p><img src="http://orgmode.org/img/export.jpg" width=600 /></p><p>I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can't right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!</p><p>Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-21-ml-101-introduction-to-machine-learning.html">&laquo; ml-101: Introduction to Machine Learning</a>
+        
+        
+        <a class="right" href="/posts/2014-01-19-vimperator-part-2.html">Vimperator: part - 2 &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

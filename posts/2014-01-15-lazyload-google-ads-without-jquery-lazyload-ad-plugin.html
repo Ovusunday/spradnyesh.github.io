@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: Lazyload Google ads without jQuery LazyLoad ad plugin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">15 January, 2014</div>
+        
+    </div>
+    <h2>Lazyload Google ads without jQuery LazyLoad ad plugin</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>I had mentioned in one of my previous articles <a href='http://www.golb.in/more-exciting-new-features-for-golbin-25.html'>here</a>, that we had changed our lazyloading technique for google-ads on <a href='http://www.golb.in/'>Golbin!</a> pages. Today I will show you how we did it.</p><p>Previously, we were using the awesome jQuery lazyload Ad plugin as shown in their documentation <a href='http://jqueryad.web2ajax.fr/'>here</a>. However, the plugin itself added about 8.4Kb to the page-weight. Even though Golbin! was using measures to lazyload the plugin itself, it was still additional page-weight, especially for first time (with browser cache empty) users.</p><p>Then, recently, we noticed that google had made some changes to their <a href='https://support.google.com/adsense/answer/3221666'>adsense</a> code because of which the ads would be rendered asynchronously, thus removing the need for the jQuery lazyload Ad plugin. Sample code looks like below:</p><pre><code>&lt;script async src=&quot;http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;
+&lt;ins class=&quot;adsbygoogle&quot;
+    style=&quot;display:inline-block;width:300px;height:250px&quot;
+    data-ad-client=&quot;ca-pub-xxxxxxxxxxxxxxxx&quot;
+    data-ad-slot=&quot;6440411535&quot;&gt;
+&lt;/ins&gt;
+&lt;script&gt; &#40;adsbygoogle = window.adsbygoogle || &#91;&#93;&#41;.push&#40;{}&#41;; &lt;/script&gt;
+</code></pre><p>So far so good. However, we wanted to go a step further than this because:</p><ul><li>In our experience, if we put the script in the bottom of the page (just before the ending "" tag), then the ads did not get rendered at all. Putting the js script at page bottom is good performance practice (see <a href='http://developer.yahoo.com/performance/rules.html'>here</a> and <a href='https://developers.google.com/speed/docs/insights/rules'>here</a> for best practices for website frontend performance).</li><li>Golbin! was already using a technique to lazyload the javascript files needed by the page itself. And we wanted to continue using this technique for the new script too.</li></ul><p>Fortunately, one needs to include the script tag only once in the page irrespective of how many ad units were present on the page; this went well with our technique, because then we could lazyload the adsense script and use some JS to invoke some function to show the ads in the correct place.</p><p>Our initial HTML markup snippet looks something similar to:</p><pre><code>&lt;div class=&quot;g-ad&quot;&gt;
+    &lt;ins class=&quot;adsbygoogle&quot;
+        style=&quot;display:inline-block;width:300px;height:250px&quot;
+        data-ad-client=&quot;ca-pub-xxxxxxxxxxxxxxxx&quot;
+        data-ad-slot=&quot;6440411535&quot;&gt;&lt;/ins&gt;
+&lt;/div&gt;
+</code></pre><p>and the supporting javascript code looks like:</p><pre><code>$.getScript&#40;&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;,
+    function &#40;data, textStatus, jqxhr&#41; {
+        var script = document.createElement&#40;&quot;script&quot;&#41;;
+        script.type = &quot;text/javascript&quot;;
+        script.text = &quot;&#40;adsbygoogle = window.adsbygoogle || &#91;&#93;&#41;.push&#40;{}&#41;&quot;;
+        for &#40;var a = null, arr = $&#40;&quot;div.g-ad&quot;&#41;, i = 0; i &lt; arr.length; i += 1&#41; {
+            a = arr&#91;i&#93;;
+            $&#40;a&#41;.append&#40;script&#41;;
+       };
+    }
+&#41;;
+</code></pre><p>If you have ever used jQuery, you will notice that what the above javascript snippet does is that it lazyloads the adsense javascript via the getScript function. And when the adsense javascript is loaded, the anonymous function is called which does the following steps</p><ul><li>creates a script tag having the code shown in the adsense documentation</li><li>finds all "div" elements having the class "g-ad"</li><li>loops through the divs found in the above step and adds the script tag to the div</li></ul><p>And voila, we're done! We have now successfully reduced 8.4Kb of page-weight, which means faster pages for our readers :)</p><p>The only drawback of this method is that it is impossible to debug it in the javascript debugger (in both firefox and chrome browsers), because the newly added script does not show up in the DOM :(</p><p>But don't worry. If this technique has worked for us, it should for you too. So, go ahead and give it a try! And don't forget to share your experiences back :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-16-kill-that-rat.html">&laquo; Kill that rat!</a>
+        
+        
+        <a class="right" href="/posts/2014-01-14-busan-week-day-5-eulsukdo-eco-center.html">Busan week: day 5 -- Eulsukdo Eco Center &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

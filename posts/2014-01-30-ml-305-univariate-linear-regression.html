@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-305: Univariate Linear Regression</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">30 January, 2014</div>
+        
+    </div>
+    <h2>ml-305: Univariate Linear Regression</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>In the last posts <a href='http://www.golb.in/ml-303-gradient-descent-41.html'>here</a>&nbsp;and <a href='http://www.golb.in/ml-304-gradient-descent-and-learning-rate-%CE%B1-42.html'>here</a>, we looked in much depth at the "gradient descent" minimization algorithm. Today we will complete the puzzle by fitting that last piece in the whole jigsaw of the "univariate linear regression" ML algorithm that we have been studying in this 30x series.</p><p>To do that, lets recap what we have learnt so far:</p><ul><li>x =&gt; input variable/feature (in "univariate", we have only 1 feature)</li><li>y =&gt; output variable/target (this is the value that we need to predict)</li><li>m =&gt; #training examples</li><li>h(x) =&gt; hypothesis function, defined as</li></ul><blockquote><p> h<sub>&Theta;</sub>(x) = &Theta;<sub>0</sub> + &Theta;<sub>1</sub> x </p></blockquote><ul><li>J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) = (&Sigma;<sub>i</sub>=1<sup>m</sup> (h<sub>&Theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2&#42;m)</li><li>Goal is to minimize the cost function, to find optimal values of &Theta;<sub>0</sub> and &Theta;<sub>1</sub> (to be substituted in the hypothesis function). This is achieved using gradient descent algorithm, defined as</li></ul><blockquote><p> repeat until convergence { </p></blockquote><blockquote><p> &Theta;<sub>j</sub> = &Theta;<sub>j</sub> - &alpha; &delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) (for j = 0, 1) </p></blockquote><blockquote><p> } </p></blockquote><p>where,</p><ul><li><b>&alpha;</b>: is called the "learning rate"</li><li><b>&delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)</b>: is the partial derivative of the cost function (J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)) with respect to &Theta;<sub>j</sub></li></ul><p>The only thing left is to substitute the real value of J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) inside the gradient descent algorithm. To do that we need to know the partial derivative of J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) with respect to &Theta;<sub>0</sub> and &Theta;<sub>1</sub>. Without going into derivation of the partial derivatives (because</p><ul><li>it is too complex and mathematically involved</li><li>i don't know it ;) and</li><li>knowing the derivation is not needed to correctly implement gradient descent</li></ul><p>), the gradient descent steps are defined (for our cost function for univariate linear regression) as:</p><blockquote><p> repeat until convergence { </p></blockquote><blockquote><p> &Theta;<sub>0</sub> = &Theta;<sub>0</sub> - &alpha;<em>(1/m)</em> (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&Theta;</sub>(x(i)) - y(i))), for j = 0 </p></blockquote><blockquote><p> &Theta;<sub>1</sub> = &Theta;<sub>1</sub> - &alpha;<em>(1/m)</em> (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&Theta;</sub>(x(i)) - y(i)) * (x(i))), for j = 1 </p></blockquote><blockquote><p> } </p></blockquote><p>That is we are inserting the actual values of the partial derivatives of J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>), with respect to &Theta;<sub>0</sub> and &Theta;<sub>1</sub> respectively in the gradient descent implementation. As mentioned previously, while implementing this step in octave (or any other software), it is extremely important to make both updates simultaneously.</p><p>With this we have completed learning our first ML algorithm, viz the "univariate linear regression". I hope you have had as much fun learning it as I have teaching it. For me, a lot of my concepts have become clear while explaining things over here in so much detail! This alone has made the whole effort worthwhile. It has also given me motivation to continue this series. So in the upcoming posts I will try to explain other more advanced ML algorithms.</p><p>Do leave comments below to share with me your experience here, especially (constructive) criticism about how I can strive to make these posts better. I am eagerly looking forward to hearing from you :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-02-01-ml-401-multivariate-linear-regression.html">&laquo; ml-401: Multivariate Linear Regression</a>
+        
+        
+        <a class="right" href="/posts/2014-01-29-ml-304-gradient-descent-and-learning-rate.html">ml-304: Gradient Descent and Learning Rate &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

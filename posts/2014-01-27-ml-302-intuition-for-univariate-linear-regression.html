@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-302: Intuition for Linear Regression</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">27 January, 2014</div>
+        
+    </div>
+    <h2>ml-302: Intuition for Linear Regression</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hello! Welcome back. Last time we studied the "univariate linear regression" ML algorithm <a href='http://www.golb.in/ml-301-linear-regression-with-one-variable-38.html'>here</a>. That time we took in a lot of new concepts, and not everything might be clear to all. So today we will dig a bit deeper into the various components and try to understand how and why they work correctly. This will help us analyze if our implementation is working correctly and also to debug things if it is not.</p><p>So lets begin with a quick review. First, the terminology</p><ul><li>m => #examples</li><li>x => input variable/feature</li><li>y => output variable/target</li><li>x<sup>(i)</sup>, y<sup>(i)</sup> => i<sup>th</sup> training example</li><li>h<sub>&Theta;</sub>(x) = &Theta;<sub>0</sub> + &Theta;<sub>1</sub> x => hypothesis function; it maps from 'x' to 'y'</li><li>J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) = (&Sigma;<sub>i</sub><sup>m</sup> (h<sub>&Theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2&#42;m) => cost function; it is a function of &Theta; (not 'x')</li></ul><p>The algorithm flow is:</p><ul><li>define the hypothesis function (univariate for now)</li><li>find optimal values for &Theta;<sub>0</sub> and &Theta;<sub>1</sub> by minimizing cost function</li><li>substitute &Theta;<sub>0</sub> and &Theta;<sub>1</sub> in h, to find the hypothesis function</li><li>now using this hypothesis function, we can predict value of 'y' for any given 'x'I remember that we have still not figured out how to do the minimization step, but we will get there, don't worry :) Today we will look in detail at the first few steps to improve our understanding of them to such an extent so as to</li><li>ensure that our implementation is correct</li><li>fix it if it is not</li></ul><p>So lets begin! To keep things simple, and our explanation easier to understand, lets assume that &Theta;<sub>0</sub> = 0, so that:</p><ul><li>h<sub>&Theta;</sub>(x) = &Theta;<sub>1</sub> x</li><li>J(&Theta;<sub>1</sub>) = (&Sigma;<sub>i</sub><sup>m</sup> (h<sub>&Theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2&#42;m)</li></ul><p>If we take the following data</p><pre><code>x = &#91;0:10&#93;
+</code></pre><p>and plot the following data</p><pre><code>hold on
+plot&#40;x, x &#42; 2&#41;
+plot&#40;x, x &#42; 3&#41;
+plot&#40;x, x &#42; 4&#41;
+hold off
+</code></pre><p>![]()</p><p>that is, we take different values of &Theta;<sub>1</sub> (2, 3 and 4 respectively), then we see that we get 3 different lines. All of them pass through the origin (because &Theta;<sub>0</sub> = 0), but have different angles. This means that our variable &Theta;<sub>1</sub> defines the angle (or slope) of our line. Also note that this line is the representation of our hypothesis function. It is a straight line because we our hypothesis function is a function of a single variable (x); it is "univariate" linear regression.</p><p>Lets move on to our cost function J. As before, visualization will help us understand it better. But to get there, we should first define some data. So lets borrow the data from the last <a href='http://www.golb.in/ml-301-linear-regression-with-one-variable-38.html'>post</a></p><p><table class="table table-bordered"> <tbody> <tr> <td> x</td> <td> y</td> </tr> <tr> <td> 307.0</td> <td> 18.0</td> </tr> <tr> <td> 350.0</td> <td> 15.0</td> </tr> <tr> <td> 318.0</td> <td> 18.0</td> </tr> <tr> <td> 304.0</td> <td> 16.0</td> </tr> <tr> <td> 302.0</td> <td> 17.0</td> </tr> <tr> <td> 429.0</td> <td> 15.0</td> </tr> <tr> <td> 454.0</td> <td> 14.0</td> </tr> <tr> <td> 440.0</td> <td> 14.0</td> </tr> <tr> <td> 455.0</td> <td> 14.0</td> </tr> <tr> <td> 390.0</td> <td> 15.0</td> </tr> </tbody> </table></p><pre><code>x = &#91;307.0; 350.0; 318.0; 304.0; 302.0; 429.0; 454.0; 440.0; 455.0; 390.0&#93;;
+y = &#91;18.0; 15.0; 18.0; 16.0; 17.0; 15.0; 14.0; 14.0; 14.0; 15.0&#93;;
+</code></pre><p>Also, for easy implementation, lets define our hypothesis to be function of both '&Theta;<sub>1'</sub> and 'x' as follows</p><pre><code>function h = hypothesis&#40;theta, x&#41;
+  h = theta &#42; x;
+end;
+</code></pre><p>Similarly, let us define our cost function as follows</p><pre><code>function J = cost&#40;theta, x, y&#41;
+  m = length&#40;x&#41;;
+  J = 0;
+  for i = 1:m
+    J = J + &#40;&#40;&#40;hypothesis&#40;theta, x&#40;i&#41;&#41;&#41; - y&#40;i&#41;&#41; &#94; 2&#41;;
+  endfor;
+  J = J / &#40;2 &#42; m&#41;;
+end;
+</code></pre><p>To get an understanding of how the cost varies with theta, we will take some theta values (say between -10 and 10 with a step of 0.5) and calculate the cost for these values. Then we can plot theta against these values to see how they interact with each other</p><pre><code>theta = &#91;-10:0.5:10&#93;;
+theta = theta&#40;:&#41;;
+costs = zeros&#40;length&#40;theta&#41;, 1&#41;;
+
+for i = 1:length&#40;theta&#41;
+  costs&#40;i&#41; = cost&#40;theta&#40;i&#41;, x, y&#41;;
+endfor;
+
+plot&#40;theta, costs&#41;;
+</code></pre><p>![]()</p><pre><code>&#91;a, b&#93; = min&#40;costs&#41;
+theta&#40;b&#41;
+</code></pre><p>Our cost-function (J) is minimum (122.80) when theta = 0; but that is not the point. The point is that the above curve is a 'convex' curve, and has a global minimum. In the next post we are going to learn techniques to find this global minimum value, so keep watching this space for that!</p><p>I hope that the above explanation convinces you that:</p><ul><li>the cost function is defined in such a way that it has a global minimum (that needs to be found)</li><li>once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x</li></ul><p>So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html">&laquo; Golbin updates: bug fixes and new features</a>
+        
+        
+        <a class="right" href="/posts/2014-01-26-ml-301-linear-regression-with-one-variable.html">ml-301: Linear Regression with one variable &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

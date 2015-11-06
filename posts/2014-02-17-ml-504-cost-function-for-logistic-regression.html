@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-504: Cost Function and Logistic Regression</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">17 February, 2014</div>
+        
+    </div>
+    <h2>ml-504: Cost Function and Logistic Regression</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hello. In the previous few posts (<a href='http://www.golb.in/ml-501-logistic-regression-51.html'>here</a>, <a href='http://www.golb.in/ml-502-hypothesis-representation-and-decision-boundary-52.html'>here</a> and <a href='http://www.golb.in/ml-503-non-linear-decision-boundary-53.html'>here</a> we learned about linear regression and also formulated its hypothesis function using the sigmoid function so that the output variable "y" always is either 0 or 1. Today we will move onto the next stage and learn about the cost function that shall be used in the logistic regression ML problem.</p><p>In <a href='http://www.golb.in/ml-502-hypothesis-representation-and-decision-boundary-52.html'>post</a> we defined our hypothesis function as</p><blockquote><p> h<sub>&theta;</sub>(x) = g(&theta;' <em> x) = 1 / (1 + e<sup>-(&theta;' </em> x)</sup>) </p></blockquote><p>Also, in <a href='http://www.golb.in/ml-301-linear-regression-with-one-variable-38.html'>post</a>, we had defined the cost function for linear regression as:</p><blockquote><p> J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2&#42;m) </p></blockquote><p>Let's re-write it as:</p><blockquote><p> J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2) / m </p></blockquote><p>or</p><blockquote><p> J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m </p></blockquote><p>that is</p><blockquote><p> cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2) </p></blockquote><p>But this cost-function is non-convex :( (unlike that of linear regression (see <a href='http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'>post</a>)). This is because the squared cost of sigmoid function is non-linear (remember that our hypothesis function is the sigmoid of (&theta;' * x)). Due to this finding the optimal (global) minimum is (mostly, unless by luck) impossible. Hence we need to define a new cost-function for our logistic regression problem.</p><p>Let us define the new cost-function as follows:</p><blockquote><p> cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1" </p></blockquote><blockquote><p> -log(1 = h<sub>&theta;</sub>(x)), if "y = 0" </p></blockquote><p>Now we need to prove that the above cost-function is convex. To do this let us first consider the case when "y = 1"</p><p>![]()</p><p>The above graph is a plot for the function "-log(h<sub>&theta;</sub>(x))". As can bee seen from this graph, our newly defined cost function has interesting and desirable properties:</p><ul><li>for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0</li><li>but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity</li></ul><p>Now see what happens when "y = 0"</p><p>![]()</p><p>The above graph is a plot for the function "-log(1 - h<sub>&theta;</sub>(x))". Similar to the previous graph, we have some interesting and desirable properties here too:</p><ul><li>for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0</li><li>but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity</li></ul><p>These properties are good because when our implementation is working as expected the cost (error) is 0, but when it is not, then it gets penalized heavily. When, in later stages, we apply minimization algorithms to this cost function, we are sure it will work in the right direction and produce the correct values of &theta;. From there, we will follow the standards steps of defining the hypothesis function which will be used to predict "y" given "x".</p><p>Coming back to the point, our real cost function "J(&theta;)" will now be defined as</p><blockquote><p> J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m </p></blockquote><p>where</p><blockquote><p> cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1" </p></blockquote><blockquote><p> -log(1 = h<sub>&theta;</sub>(x)), if "y = 0" </p></blockquote><p>Keep watching this space until next time when we will move onto the next stage of the logistic regression ML algorithm and learn about minimization techniques for our new cost function!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">&laquo; ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a>
+        
+        
+        <a class="right" href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

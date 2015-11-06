@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-203: Vectorization in Octave</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">3 February, 2014</div>
+        
+    </div>
+    <h2>ml-203: Vectorization in Octave</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>I hope you have noticed that we have jumped back to the 20x series from the last <a href='http://www.golb.in/ml-402-multivariate-linear-regression-in-octave-45.html'>post</a> which was in the 30x series, and wondered why are we moving backwards ;). Well, that is because in the last 20x <a href='http://www.golb.in/ml-202-octave-2-37.html'>post</a> I had said that there is still one thing left about octave that we have not studied yet, but which we will study after completing one ML algorithm. So lets get onto that.</p><p>But before we move ahead, I urge you to take a look at our final program for "multivariate linear regression" ML algorithm implementation in the previous <a href='http://www.golb.in/ml-402-multivariate-linear-regression-in-octave-45.html'>post</a>, because our today's discussion is all about how we can improve it's performance by making use of the "vectorization" property in octave.</p><p>The basic meaning of vectorization is that instead of running a (for) loop over a vector, we use matrix theory to do the computations. This is because in most of the programming languages that support matrix manipulations the libraries for doing them are heavily optimized and can run orders of magnitude faster than the corresponding loop implementation.</p><p>Lets take a concrete example to understand better. Lets look at the following snippet from our complete multivariate linear regression implementation (see previous <a href='http://www.golb.in/ml-402-multivariate-linear-regression-in-octave-45.html'>post</a>):</p><pre><code>function y = hypothesis&#40;x, theta&#41;
+  N = length&#40;x&#41;;
+  y = 0;
+  for j in 1:N
+    y = y + x&#40;j&#41; &#42; theta&#40;j&#41;;
+  end;
+end;
+</code></pre><p>Remember that, the input variables "x" and "theta" in the above function are "1xN" and "Nx1" vectors respectively, so if we do the following vector multiplication</p><pre><code>x &#42; theta;
+</code></pre><p>then the result is exactly the same as that of our previous implementation of the hypothesis function. So by implementing our hypothesis function as the following:</p><pre><code>function y = hypothesis&#40;x, theta&#41;
+  y = x &#42; theta;
+end;
+</code></pre><p>we get the following benefits:</p><ul><li>our LOC (lines of code) reduces; and the less code we write, the less bugs it will have ;)</li><li>more importantly, we have moved from a loop structure to matrix algebra, so that we are making use of the highly optimized libraries of octave. thus our overall program performance will improve tremendously</li><li>the implementation becomes generic and will work for all of scalars, vectors and matrices</li></ul><p>Similarly, we should take benefit from octave functions that will work on vectors and matrices and avoid loops completely. Taking cue from the above, lets re-implement our multivariate linear regression algorithm as follows:<div id="i-ads"><div class="g-ad"><ins class="adsbygoogle" style="display:inline-block;width:234px;height:60px" data-ad-client="ca-pub-7627106577670276" data-ad-slot="9310803587"></ins></div><div class="g-ad"><ins class="adsbygoogle" style="display:inline-block;width:234px;height:60px" data-ad-client="ca-pub-7627106577670276" data-ad-slot="1787536781"></ins></div></div></p><pre><code>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function y = hypothesis&#40;x, theta&#41;
+  y = x' &#42; theta;
+end;
+
+function J = cost&#40;X, y, theta&#41;
+  m = size&#40;X, 1&#41;;
+  X = &#91;ones&#40;m, 1&#41;, X&#93;; % add the x0 feature column
+  J = sum&#40;&#40;hypothesis&#40;X, theta&#41; - y&#41; .&#94; 2&#41; / &#40;2 &#42; m&#41;;
+end;
+
+function &#91;J, theta&#93; = gradientDescent&#40;X, y, theta, alpha, num\&#95;iters&#41;
+  m = size&#40;X, 1&#41;;
+  n = size&#40;X, 2&#41;;
+  for iter in 1:num\&#95;iters
+    diff = hypothesis&#40;X, theta&#41; - y;
+    sum = zeros&#40;n, 1&#41;;
+    for j = 1:n
+      sum&#40;j&#41; = sum&#40;diff&#40;j&#41; .\&#42; X'&#40;:, j&#41;&#41;;
+    endfor;
+    theta = theta - &#40;alpha &#42; &#40;sum / m&#41;&#41;;
+  endfor;
+  J = cost&#40;X, y, theta&#41;;
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program remains unchanged
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+</code></pre><p>Do you see the reduction in complexity? Still there is an improvement in the generality of the program! And to top it all this implementation runs super fast as compared to the previous. Ain't that great?</p><p>Ensure that you understand what is going on here. Take help from the previous 20x octave posts <a href='http://www.golb.in/ml-201-octave-1-36.html'>here</a> and <a href='http://www.golb.in/ml-202-octave-2-37.html'>here</a>. Remember, the easiest trick to know that you are doing the correct thing is to check the ranks of the matrices that you are doing computation on. For example, in the first example above,</p><pre><code>rank&#40;x&#41; =&gt; 1, n
+rank&#40;theta&#41; =&gt; n, 1
+
+expected rank of h =&gt; 1, 1
+
+so it should be that =&gt; h = x &#42; theta
+</code></pre><p>If you remember the above rule-of-thumb, it should be difficult to make mistakes ;) But if you still have any doubts, don't hesitate to ask them using the comments, and I'll try my best to answer them. So what are you waiting for? Try implementing the above in octave on your system and try experimenting to improve your own understanding!</p><p>ps: In the coursera ML course, all octave programs are really programming assignments and have credits. I have broken the promise by giving (partially) answers here and in the previous <a href='http://www.golb.in/ml-402-multivariate-linear-regression-in-octave-45.html'>post</a>. I will not show anymore octave programs continuing forward, but only the functions and intuitions behind them. I hope that you will understand. Thanks :)</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-02-04-ml-403-feature-scaling.html">&laquo; ml-403: Feature Scaling</a>
+        
+        
+        <a class="right" href="/posts/2014-02-02-ml-402-multivariate-linear-regression-in-octave.html">ml-402: Multivariate Linear Regression in Octave &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

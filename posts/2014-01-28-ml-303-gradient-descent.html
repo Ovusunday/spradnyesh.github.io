@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-303: Gradient Descent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">28 January, 2014</div>
+        
+    </div>
+    <h2>ml-303: Gradient Descent</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi, welcome back! I hope you have been following our machine learning algorithm series in the last few posts. If you have, then you know that till now we have developed the basic framework for a particular algorithm called "univariate linear regression" and the only step pending is to minimize our cost function "J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)" so that we can find the optimal values of &Theta;<sub>0</sub> and &Theta;<sub>1</sub>. Once we have these values, we can substitute them and arrive at the definition of our hypothesis function "h(x)" which will let us predict the values for our target variable "y".</p></p><p>I hope that things are clear till here. If they are, then lets move on to our last and final step of the algorithm, that is to minimize our cost function "J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)". The general outline of the steps that we will follow to achieve this are:</p></p><ul><li>start with some value of &Theta;<sub>0</sub>, &Theta;<sub>1</sub> (a common choice is "0, 0")</li></li><li>keep changing &Theta;<sub>0</sub>, &Theta;<sub>1</sub> to reduce J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) until we hopefully end up at a minimum</li></li></ul><p><img alt="" src="/static/photos/3f253e13ef98f0f1eab3f715986f0bc81_600.png" style="width: 600px; height: 332px;" /></p></p><p>There are various minimization algorithms available, but the most commonly used (and the one that we will study now) is the "gradient descent" minimization algorithm. It is defined as below</p></p><blockquote><p> repeat until convergence { &Theta;<sub>j</sub> = &Theta;<sub>j</sub> - &alpha; &delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) (for j = 0, 1) }</pre> </p></blockquote><p>where,</p></p><ul><li><b>&alpha;</b>: is called the "learning rate"</li></li><li><b>&delta;/&delta;&Theta;<sub>j</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)</b>: is the partial derivative of the cost function (J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)) with respect to &Theta;<sub>j</sub></li></li></ul><p>Note that in the above algorithm, in any 1 step, <span style="text-decoration:underline;">all</span> of the &Theta;'s should be updated simultaneously. So,</p></p><blockquote><p> temp0 = &Theta;<sub>0</sub> - &alpha; &delta;/&delta;&Theta;<sub>0</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) </p></blockquote><blockquote><p> temp1 = &Theta;<sub>1</sub> - &alpha; &delta;/&delta;&Theta;<sub>1</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) </p></blockquote><blockquote><p> &Theta;<sub>0</sub> = temp0 </p></blockquote><blockquote><p> &Theta;<sub>1</sub> = temp1</pre> </p></blockquote><p>is correct, but the following is not</p></p><blockquote><p> temp0 = &Theta;<sub>0</sub> - &alpha; &delta;/&delta;&Theta;<sub>0</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) </p></blockquote><blockquote><p> &Theta;<sub>0</sub> = temp0 </p></blockquote><blockquote><p> temp1 = &Theta;<sub>1</sub> - &alpha; &delta;/&delta;&Theta;<sub>1</sub> J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>) </p></blockquote><blockquote><p> &Theta;<sub>1</sub> = temp1</pre> </p></blockquote><p>That is because in the second set of commands, when we are calculating temp1, we use the <span style="text-decoration:underline;">new</span> value of &Theta;<sub>0</sub>, instead of the old one. This is a very important step and missing this can lead to a lot of difficult to find errors, so be careful about implementing this step.</p></p><p>That's it for today. In the next post we will dig deeper to get an understanding of how gradient descent works to find the minimal value of the cost function (J(&Theta;<sub>0</sub>, &Theta;<sub>1</sub>)) and in turn help us to find the optimal values of &Theta;<sub>0</sub> and &Theta;<sub>1</sub>. We will also see what is the learning rate "&alpha;" and how it's value will have an impact on the performance of our gradient descent implementation.</p></p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-29-ml-304-gradient-descent-and-learning-rate.html">&laquo; ml-304: Gradient Descent and Learning Rate</a>
+        
+        
+        <a class="right" href="/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html">Golbin updates: bug fixes and new features &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

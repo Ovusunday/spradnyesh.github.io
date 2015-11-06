@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-202: octave -- part - 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">25 January, 2014</div>
+        
+    </div>
+    <h2>ml-202: octave -- part - 2</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi there, welcome back! In the last <a href='http://www.golb.in/ml-201-octave-1-36.html'>post</a>, we looked at some basic <a href='http://www.gnu.org/software/octave/doc/interpreter/index.html'>octave</a> commands. Today we will dig deeper into octave and understand more concepts and commands. I hope you are eager and excited, so lets begin!</p><p><b>Plotting</b>: One of the most important things that we do during implementing ML algorithms is to plot data. This is done to</p><ul><li>understand the nature of our input/training data which gives us insight into what approach to take to solve the problem</li><li>examine our implementation and ensure that it is indeed working correctly, and/or improve it</li></ul><p>Some of the important commands from the plotting world are:</p><pre><code>plot&#40;A, B&#41; % if A, B are both vectors, then it will plot them against the X and Y axes
+</code></pre><pre><code>hold on % print a new graph on top of the previous graph
+</code></pre><pre><code>xlabel&#40;'&amp;amp;lt;label-name&amp;amp;gt;'&#41; % label the x axis &#40;similarly, ylabel&#41;
+</code></pre><pre><code>axis&#40;&#91;0.5 1 -1 1&#93;&#41; % change X axis range to be between 0.5 and 1, and Y axis between -1 and 1
+</code></pre><pre><code>print -dpng '&amp;amp;lt;file-name&amp;amp;gt;.png' % save graph as png file
+</code></pre><pre><code>close % close the graph
+</code></pre><pre><code>subplot&#40;1, 2, 1&#41; % divide figure into 2 parts, and access the first element
+</code></pre><p><b>Computing on data</b>: Finally, the operations that you have been waiting for. Doing stuff to all the data that we have created and/or loaded earlier:</p><pre><code>E = D&#40;:&#41; % will create a column vector from matrix D
+</code></pre><pre><code>sum&#40;C&#41; % will do a column-wise sum of matrix C and produce a 1x3 row vector
+</code></pre><pre><code>sum&#40;sum&#40;C&#41;&#41; % will sum all the elements of matrix C and produce a single number
+</code></pre><p>some operators work at matrix level (example A &#42; B is matrix multiplication), where as some operators (the ones beginning with the '.' character, like .* for example) work at element level (example A .&#42; B is multiplication of corresponding elements of matrices A and B (assuming both A and B have the same ranks))</p><pre><code>size&#40;A&#41; % shows the rank of matrix A
+</code></pre><pre><code>F = &#91;B B2&#93; % place B and B2 next to each other &#40;horizontally&#41; and save them in F
+</code></pre><pre><code>G = &#91;B; B2&#93; % place B and B2 one below the other &#40;vertically&#41; and save them in G
+</code></pre><p><b>Control statements</b>: Like any other programming language, octave too has its own set of control statements, and they are as follows:</p><ul><li>for loop</li></ul><pre><code>v = zeros&#40;10, 1&#41;;
+for i in 1:10
+  v&#40;i&#41; = 2 .&#94; i;
+end;
+</code></pre><ul><li>while loop</li></ul><pre><code>i = 1;
+while i &amp;amp;lt;= 5
+  v&#40;i&#41; = v&#40;i&#41; &#42; 2;
+  i = i + 1;
+end;
+</code></pre><ul><li>if and break (to achieve the same thing as point-2 above)</li></ul><pre><code>i = 1;
+while true
+  v&#40;i&#41; = v&#40;i&#41; &#42; 2;
+  i = i + 1;
+  if i == 6
+    break;
+  end;
+end;
+</code></pre><ul><li>if-elseif-else</li></ul><pre><code>v&#40;1&#41; = 2;
+if v&#40;1&#41; == 1
+  disp&#40;'The value is one'&#41;;
+elseif v&#40;1&#41; == 2
+  disp&#40;'The value is two'&#41;;
+else
+  disp&#40;'The value is not one or two'&#41;;
+end;
+</code></pre><ul><li>functions</li></ul><pre><code>function &#91;y1, y2&#93; = squareAndCubeThisNumber&#40;x&#41;
+  y1 = x &#94; 2;
+  y2 = x &#94; 3;
+end;
+squareAndCubeThisNumber&#40;3&#41; % will return and print 9 and 27
+</code></pre><p>One most important thing that I have not mentioned yet, but hope that you have noticed is that the array (vector and matrix) subscripts start with '1' and not '0' in octave. This information is very important for those of you who come from a programming background (I guess that would be all of you who are reading this post ;) )</p><p>Do note that the above (and in the previous post) is <i>not</i> an exhaustive list of all capabilities of octave; and neither are they the only operations that we will be using during implementing ML algorithms. So I urge you all to please</p><ul><li>install octave on your local system</li><li>Read further documentation <a href='http://www.gnu.org/software/octave/doc/interpreter/index.html'>here</a> and play around with the help command</li><li>Try out the above commands (at the least) and feel a bit comfortable using them</li></ul><p>With the basics now out of our way, lets move with full speed ahead to really implementing some ML algorithms. God speed!</p><p>ps: There is one more part about octave (vectorization), but we will get to that after studying atleast 1 more real algorithm first!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-26-ml-301-linear-regression-with-one-variable.html">&laquo; ml-301: Linear Regression with one variable</a>
+        
+        
+        <a class="right" href="/posts/2014-01-24-ml-201-octave-1.html">ml-201: octave -- part - 1 &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

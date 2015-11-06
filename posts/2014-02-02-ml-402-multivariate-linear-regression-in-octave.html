@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: ml-402: Multivariate Linear Regression in Octave</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">2 February, 2014</div>
+        
+    </div>
+    <h2>ml-402: Multivariate Linear Regression in Octave</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Hi! I hope that you have been following the recent posts in the ML series where we have understood in much detail the various aspects of the linear regression ML algorithm, and also intuition about how it works. We have also formulated all the mathematical formulae, but have not seen how to implement them in octave yet. So that's what we are going to do today. Lets start with a small recap (of only the functions) of the multivariate linear regression ML algorithm:</p><p><b>hypothesis function</b> is defined as:</p><blockquote><p> h<sub>&theta;</sub>(x) = &Sigma;<sub>j=0</sub><sup>n</sup> &theta;<sub>j</sub> x<sub>j</sub> </p></blockquote><p><b>cost function</b> is defined as:</p><blockquote><p> J<sub>(&theta;0, &theta;1, &theta;2, &hellip;, &theta;n)</sub> = (&Sigma;<sub>i=1</sub><sup>m</sup> &Sigma;<sub>j=1</sub><sup>n</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup><sub>j</sub>) - y<sup>(i)</sup>)<sup>2</sup>)/(2&#42;m) </p></blockquote><p>While the <b>gradient descent</b> steps are:</p><blockquote><p> repeat until convergence { </p></blockquote><blockquote><p> &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha;&#42;(1/m)&#42; (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup><sub>j</sub>) - y<sup>(i)</sup>) * (x<sup>(i)</sup><sub>j</sub>)), for j = 0 to n </p></blockquote><blockquote><p> } </p></blockquote><p>Before we move onto octave, lets define some variables:</p><blockquote><p> <b>X</b> =&gt; input feature "matrix" of size "mxn" </p></blockquote><blockquote><p> <b>x</b> =&gt; "one" example "vector" of size "(n+1)x1" (including the pivot feature x0 (which is always = 1)) </p></blockquote><blockquote><p> <b>&theta;</b> =&gt; vector of size "(n+1)x1" </p></blockquote><blockquote><p> <b>y</b> =&gt; output target variable "vector" of size "mx1" </p></blockquote><p>Now for the actual octave program</p><pre><code>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function y = hypothesis&#40;x, theta&#41;
+  N = length&#40;x&#41;; % this is actually inclusive of pivot x0, so this N = n + 1, where n = #features
+  y = 0;
+  for j in 1:N
+    y = y + x&#40;j&#41; &#42; theta&#40;j&#41;;
+  end;
+end;
+
+function J = cost&#40;X, y, theta&#41;
+  m = size&#40;X, 1&#41;;
+  X = &#91;ones&#40;m, 1&#41;, X&#93;; % add the x0 feature column
+  n = size&#40;X, 2&#41;; % note that this n includes the x0 feature too
+  J = 0;
+  for i in 1:m
+    J = J + &#40;hypothesis&#40;X&#40;i, :&#41;, theta&#41; - y&#40;i&#41;&#41; &#94; 2; % the inner &quot;j&quot; for-loop is inside the &quot;hypothesis&quot; function
+  end;
+  J = J / &#40;2 &#42; m&#41;;
+end;
+
+function &#91;J, theta&#93; = gradientDescent&#40;X, y, theta, alpha, num\&#95;iters&#41;
+  % ideally we should let gradientDescent run until convergence,
+  % but for simplicity we will run it for a fixed number of iterations &#40;num\&#95;iters&#41;
+  
+  m = size&#40;X, 1&#41;;
+  n = size&#40;X, 2&#41;;
+  
+  for iter in 1:num\&#95;iters
+    sum = zeros&#40;n, 1&#41;;
+    for i = 1:m
+      diff = hypothesis&#40;X&#40;i, :&#41;, theta&#41; - y&#40;i&#41;;
+      for j = 1:n
+        sum&#40;j&#41; = sum&#40;j&#41; + diff &#42; X&#40;i, j&#41;;
+      end;
+    end;
+    for j = 1:n
+      theta&#40;j&#41; = theta&#40;j&#41; - &#40;alpha &#42; &#40;sum&#40;j&#41; / m&#41;&#41;;
+    end;
+  end;
+
+  J = cost&#40;X, y, theta&#41;;
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program starts here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+&#91;X, y&#93; = load&#40;&quot;data&quot;&#41;;        % load some data
+
+%%%%% initialize some basic variables
+m = size&#40;X, 1&#41;;               % #training examples
+X = &#91;ones&#40;m, 1&#41;, X&#93;;          % add pivot feature vector x0
+n = size&#40;X, 2&#41;;               % #features + 1
+alpha = 0.01;                 % &quot;learning rate&quot;; actual value needs to be determined experimentally
+theta = zeros&#40;n, 1&#41;;          % initialize to some arbitrary value
+num\&#95;iters = 1000;             % initialize to some arbitrary value
+
+%%%%% run gradientDescent
+&#91;J, theta&#93; = gradientDescent&#40;X, y, theta, alpha, num\&#95;iters&#41;;
+</code></pre><p>That's it! Wasn't that easy?</p><p>Once we have found out the optimal values for &theta; (theta), we can find the value for any new "y", by simply calling the hypothesis function using the new (given) value for "x".</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-02-03-ml-203-vectorization-in-octave.html">&laquo; ml-203: Vectorization in Octave</a>
+        
+        
+        <a class="right" href="/posts/2014-02-01-ml-401-multivariate-linear-regression.html">ml-401: Multivariate Linear Regression &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

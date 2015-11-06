@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: Vimperator: part - 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">18 January, 2014</div>
+        
+    </div>
+    <h2>Vimperator: part - 1</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>Continuing with <a href='http://www.golb.in/kill-that-rat-28.html'>this </a> and <a href='http://www.golb.in/stumpwm-29.html'>this</a>, let me introduce yet another of my favorite tools to you: <a href='http://www.vimperator.org/vimperator'>vimperator</a>. Vimperator is essentially a <a href='http://www.mozilla.org/en-US/'>firefox</a> plugin, but it is so awesome that it takes web browsing to a whole different level. And I am not exaggerating it at all; allow me to present the case in front of you.</p></p><p>The most basic (but awesome, nonetheless) feature is mouseless browsing. Press the "f" key so that all links on the page get highlighted with a number.</p></p><p><img alt="Screenshot" src="../img/2015-11-05-153511&#95;958x1061&#95;scrot.png" width=600 /></p><p>Now you can press the number of the link you want to open, and that link will be opened in the current tab. Instead do the same with "F" and the link will be opened in a new tab. Similarly, the following keys can be used for navigation</p></p><ul><li>h, j, k, l: moving left, down, up, right (similar to vim) on the page</li></li><li>gt: switch to next tab</li></li><li>gT: switch to previous tab</li></li><li>o: enter URL and open in current tab</li></li><li>O: edit current URL and open page in current tab</li></li><li>t: enter URL to open page in a new tab</li></li><li>T: edit current URL and open page in new tab</li></li><li>f: find on page</li></li></ul><p>Another feature that I use regularly (atleast 10-20 times in a single day) is dynamic bookmarks. I am sure that online search (google, bing, wikipedia, etc) is an extremely frequent usecase in any persons browsing session. Most browsers provide a dedicated search-bar next to the location bar. And also, this search-bar is customizable, that is the browser provides a dropdown of the various search engines that you want to search on. This is definitely more convenient than first going to the search engine page and then searching; you save 1 step. But:</p></p><ul><li>see the above image again. Vimperator removes both the location bar and the search bar as well</li></li><li>more importantly, navigating the mouse to the search bar and optionally changing the search engine is not the best way to do it at all</li></li></ul><p>So how do we solve this problem efficiently using vimperator? This is where dynamic bookmarks come in. Lets take an example of using the google search engine. You need to do this only the 1st time:</p></p><ul><li>go to google.com and search for "golb.in"</li></li><li>press "a" to see a "bmark" command at the bottom of the page</li></li><li>edit the URL to look similar to https://www.google.com/search?q=%s</li></li><li>leave a space after the URL and enter "-keyword google"</li></li><li>press enter</li></li></ul><p>And you are done! Now every time you want to search something on google, simply press "t google &amp;lt;your search query&amp;gt;" and you will be taken to the corresponding google search page. You can do similarly with other search engines, and create bookmarks like "bing", "wiki", etc. Heck, this technique can be used on any website that gives you a search functionality. Who needs browser supported search engines anymore? Ain't that cool?</p></p><p>I hope this (and my previous <a href='http://www.golb.in/kill-that-rat-28.html'>post</a> on going mouseless) has convinced you to atleast give vimperator a try. If not, don't worry. I still have a few more, advanced but even more awesome, features of vimperator. I will leave them for the next post ;)</p></p><p>But I won't leave you before telling you that you can reach the locally available help via the ":help" and ":helpall" commands</p></p><p>If you did give vimperator a try, do let me know your experience using it, via comments. And don't feel shy or afraid to ask for help if you find it difficult</p></p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2014-01-19-vimperator-part-2.html">&laquo; Vimperator: part - 2</a>
+        
+        
+        <a class="right" href="/posts/2014-01-17-stumpwm.html">Stumpwm &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

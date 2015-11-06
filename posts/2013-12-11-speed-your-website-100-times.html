@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Today is better than yesterday!: Speed up your website 100x</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">Today is better than yesterday!</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="/index.html">Home</a></li>
+                <li
+                ><a href="/archives.html">Archives</a></li>
+                
+                <li
+                >
+                <a href="/pages/about.html">About</a>
+                </li>
+                
+                <li><a href="/feed.xml">RSS</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-lg-9">
+            <div id="content">
+                
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">11 December, 2013</div>
+        
+    </div>
+    <h2>Speed up your website 100x</h2>
+</div>
+<div>
+    </ol class="contents">
+    <p>If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That's right, 100 times! So what is the secret? How did we do it? Well, actually there's the short answer and the long answer.</p><p>For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!</p><p>However, in reality things are not so simple. As <a href='http://www-cs-faculty.stanford.edu/&#126;knuth/'>Donald Knuth</a> put it:</p><blockquote><p> Premature optimization is the root of all evil </p></blockquote><p>So we did what was correct: measure. We performed the following steps:</p><ul><li>measure page speed (as perceived by end users) using tools like <a href='http://yslow.org/'>yslow</a>], <a href='https://developers.google.com/speed/pagespeed/'>pagespeed</a>], etc</li><li>figure out which requests are taking time</li><li>split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)</li><li>during our measurements, we found that the article create/update page was the slowest</li><li>this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x</li></ul><p>The lessons that we learned from the above exercise were</p><ul><li>don't do premature optimization</li><li>measure before starting to optimize</li><li>go for the low hanging fruits (find the thing that will give the maximum ROI)</li><li>don't optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)</li></ul><p>We would like to hear about your optimization experiences!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/posts/2013-12-13-svn-unmerge.html">&laquo; SVN unmerge</a>
+        
+        
+        <a class="right" href="/posts/2013-12-09-exciting-new-features-on-golbin.html">Exciting new features on Golbin! &raquo;</a>
+        
+    </div>
+
+    
+
+
+</div>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="sidebar">
+                <h3>Links</h3>
+                <ul id="links">
+                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
+                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages/another-page.html">Another Page</a></li>
+                    
+                </ul>
+                
+                <div id="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        
+                        <li><a href="/posts/2014-02-19-ml-506-multi-class-classification.html">ml-506: Multi-class Classification</a></li>
+                        
+                        <li><a href="/posts/2014-02-18-ml-505-simplified-cost-function-and-gradient-descent-for-logistic-regression.html">ml-505: Simplified Cost Function and Gradient Descent for Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+        <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
