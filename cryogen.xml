@@ -12,10 +12,32 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Sat, 11 Jun 2016 11:16:56 +0530
+Sat, 11 Jun 2016 16:20:34 +0530
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
+<item>
+<guid>
+http://spradnyesh.github.io/posts/2016-06-11-cryogen-on-github.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2016-06-11-cryogen-on-github.html
+</link>
+<title>
+cryogen based static site on github
+</title>
+<description>
+&lt;p&gt;&lt;a href='https://pages.github.com/'&gt;Github Pages&lt;/a&gt; are a good way to host your own blog. &lt;a href='http://jekyllrb.com/'&gt;Jekylly&lt;/a&gt; is the de-facto standard of achieving this. but being a &lt;a href='http://clojure.org/'&gt;Clojure&lt;/a&gt; guy, i wanted to find something to achieve the same using Clojure. and find i did =&gt; &lt;a href='http://cryogenweb.org/index.html'&gt;Cryogen&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Cryogen does have a &quot;&lt;a href='http://cryogenweb.org/docs/deploying-to-github-pages.html'&gt;deploying-to-github-pages&lt;/a&gt;&quot; documentation. the Cryogen docs suggest that you push the &quot;public&quot; directory to github gh-pages&lt;/p&gt;&lt;p&gt;however, i'd like to store both the source (.md files, images, etc) and the generated static content (.html files) on github. in order to do this, i have a different setup that i'd like to share with you&lt;/p&gt;&lt;h2&gt;&lt;a name=&quot;one&amp;#95;time&amp;#95;setup&amp;#95;steps&quot;&gt;&lt;/a&gt;one time setup steps&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;create cryogen project as shown &lt;a href='http://cryogenweb.org/docs/getting-started.html'&gt;here&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;pre&gt;&lt;code&gt;lein new cryogen my-blog
+cd my-blog
+&amp;#126;/my-blog $ lein ring server&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&lt;li&gt;add pages/posts to ~/my-blog/resources/templates/md/&lt;/li&gt;&lt;li&gt;&quot;lein ring server&quot; will automatically generate static site whenever a new post/page is added/edited&lt;/li&gt;&lt;li&gt;add the &quot;resources/templates/public/&quot; to github account as is suggested in the Cryogen docs &lt;a href='http://cryogenweb.org/docs/deploying-to-github-pages.html'&gt;here&lt;/a&gt;&lt;/li&gt;&lt;li&gt;add the &quot;resources/templates/md/&quot; to another github account as backup of your blog source&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;this approach has the following benefits&lt;/p&gt;&lt;ul&gt;&lt;li&gt;backup blog source (that you can move easily from 1 machine to another)&lt;/li&gt;&lt;li&gt;store generated static files that will be served by github pages&lt;/li&gt;&lt;li&gt;upgrade cryogen without it conflicting w/ existing source&lt;/li&gt;&lt;/ul&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Sat, 11 Jun 2016 00:00:00 +0530
+</pubDate>
+</item>
 </channel>
 </rss>
