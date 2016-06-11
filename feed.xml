@@ -12,11 +12,31 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Sat, 11 Jun 2016 10:40:29 +0530
+Sat, 11 Jun 2016 11:16:56 +0530
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
+<item>
+<guid>
+http://spradnyesh.github.io/posts/2016-06-11-lightdm-passwordless-login.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2016-06-11-lightdm-passwordless-login.html
+</link>
+<title>
+passwordless login in lightdm
+</title>
+<description>
+&lt;p&gt;i've mentioned before &lt;a href='/posts/2014-01-17-stumpwm.html'&gt;here&lt;/a&gt;, &lt;a href='/posts/2014-01-16-kill-that-rat.html'&gt;here&lt;/a&gt;, &lt;a href='/posts/2014-01-18-vimperator.html'&gt;here&lt;/a&gt; and &lt;a href='/posts/2014-01-19-vimperator-part-2.html'&gt;here&lt;/a&gt; that i prefer using the keyboard than the mouse for increased productivity. i also use &lt;a href='https://en.wikipedia.org/wiki/LightDM'&gt;lightdm&lt;/a&gt; as my &lt;a href='https://en.wikipedia.org/wiki/X_display_manager_&amp;#40;program_type&amp;#41;'&gt;display manager&lt;/a&gt; from which i invoke &lt;a href='https://en.wikipedia.org/wiki/StumpWM'&gt;stumpwm&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;since mostly i'm the only person using my desktop i like to be auto-logged-in into my system. i don't care much about security because i use &lt;a href='http://colemak.com/'&gt;colemak&lt;/a&gt; as my keyboard layout and hence any person using my system won't be able to use it anyways ;)&lt;/p&gt;&lt;p&gt;it's really very easy to enable passwordless login in lightdm. simply uncomment &quot;autologin-user&quot; and put in your userid there, as below&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt; autologin-user=[userid] &lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;that's it! although it's super simple, i'm keeping it here for my own future reference O:-)&lt;/p&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Sat, 11 Jun 2016 00:00:00 +0530
+</pubDate>
+</item>
 <item>
 <guid>
 http://spradnyesh.github.io/posts/2014-02-19-ml-506-multi-class-classification.html
