@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Today is better than yesterday!: Git week: part - 1</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2013-12-18-git-week-part-1.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -53,13 +54,13 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">18 December, 2013</div>
+        <div class="col-lg-6">December 18, 2013</div>
         
     </div>
     <h2>Git week: part - 1</h2>
 </div>
 <div>
-    </ol class="contents">
+    
     <p><a href='http://www.git-scm.com/'>git</a> rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p><p><strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p><p>Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like <a href='https://github.com/'>github</a>, <a href='https://bitbucket.org/'>bitbucket</a>, etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p><p>And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found, "git-bundle", was exactly what I was searching for.</p><p>That's enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some background first. Let's say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p><pre><code>cd &lt;repo&gt;
 git bundle create &lt;repo-name&gt;.bdl master
 git tag -f &quot;bdl&quot; master
@@ -92,12 +93,12 @@ git tag -f &quot;bdl&quot; master
 
         <div class="col-md-3">
             <div id="sidebar">
-                <h3>Links</h3>
+                <!--<h3>Links</h3>
                 <ul id="links">
                     <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    <li><a href="http://carmenla.me/blog/archives">Carmen's Blog</a></li>
                     
-                </ul>
+                </ul>-->
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
@@ -109,6 +110,14 @@ git tag -f &quot;bdl&quot; master
                         
                         <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
                         
+                        <li><a href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -116,12 +125,12 @@ git tag -f &quot;bdl&quot; master
             </div>
         </div>
     </div>
-    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+    <footer>Copyright &copy;  Pradnyesh Sawant
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

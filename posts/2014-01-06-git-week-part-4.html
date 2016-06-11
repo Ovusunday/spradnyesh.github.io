@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Today is better than yesterday!: Git week: part - 4</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2014-01-06-git-week-part-4.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -53,14 +54,14 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">6 January, 2014</div>
+        <div class="col-lg-6">January 6, 2014</div>
         
     </div>
     <h2>Git week: part - 4</h2>
 </div>
 <div>
-    </ol class="contents">
-    <p>Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 <a href='http://www.golb.in/git-week-part-1-13.html'>here</a>, <a href='http://www.golb.in/git-week-part-2-14.html'>here</a> and <a href='http://www.golb.in/git-week-part-3-15.html'>here</a>. Today I will share another extremely helpful git feature with you all: "git subtree".</p><p>But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p><p>Anyways, back to the background story. As I have hinted in my previous stories, I am working on a <a href='http://en.wiktionary.org/wiki/pet&#95;project'>pet-project</a> wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.</p><p>I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p><p>However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "<a href='http://www.golb.in/git-week-part-1-13.html'>git week, part 1</a>" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "<a href='http://www.golb.in/git-week-part-1-13.html'>git week, part 1</a>" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!</p><p>Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p><pre><code>&#126;/my-projects/
+    
+    <p>Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 <a href='http://www.golb.in/git-week-part-1-13.html'>here</a>, <a href='http://www.golb.in/git-week-part-2-14.html'>here</a> and <a href='http://www.golb.in/git-week-part-3-15.html'>here</a>. Today I will share another extremely helpful git feature with you all: "git subtree".</p><p>But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p><p>Anyways, back to the background story. As I have hinted in my previous stories, I am working on a <a href='http://en.wiktionary.org/wiki/pet_project'>pet-project</a> wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.</p><p>I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p><p>However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "<a href='http://www.golb.in/git-week-part-1-13.html'>git week, part 1</a>" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "<a href='http://www.golb.in/git-week-part-1-13.html'>git week, part 1</a>" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!</p><p>Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p><pre><code>&#126;/my-projects/
     - project-A/
         - config/
         - src/
@@ -116,12 +117,12 @@ git rm -rf &lt;name-of-data-folder&gt;
 
         <div class="col-md-3">
             <div id="sidebar">
-                <h3>Links</h3>
+                <!--<h3>Links</h3>
                 <ul id="links">
                     <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    <li><a href="http://carmenla.me/blog/archives">Carmen's Blog</a></li>
                     
-                </ul>
+                </ul>-->
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
@@ -133,6 +134,14 @@ git rm -rf &lt;name-of-data-folder&gt;
                         
                         <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
                         
+                        <li><a href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -140,12 +149,12 @@ git rm -rf &lt;name-of-data-folder&gt;
             </div>
         </div>
     </div>
-    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+    <footer>Copyright &copy;  Pradnyesh Sawant
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

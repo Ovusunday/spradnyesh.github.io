@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Today is better than yesterday!: ml-103: Unsupervised learning and Recommender systems</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2014-01-23-ml-103-unsupervised-learning-and-recommender-systems.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -53,13 +54,13 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">23 January, 2014</div>
+        <div class="col-lg-6">January 23, 2014</div>
         
     </div>
     <h2>ml-103: Unsupervised learning and Recommender systems</h2>
 </div>
 <div>
-    </ol class="contents">
+    
     <p>Hello :) In the last 2 posts <a href='http://www.golb.in/ml-101-introduction-to-machine-learning-33.html'>here</a> and <a target="_blank"href="http://www.golb.in/ml-102-supervised-learning-34.html">here</a>, we got a general overview of what Machine learning is and also looked at a particular category ML algorithms, viz the "supervised learning" type.</p><p>Today we will briefly look at 2 more types of ML algorithms, viz the "unsupervised learning" and "recommender systems". I hope you remember that in the supervised learning types of ML algorithms, we get the "right answers" embedded in the training data. As against this, in the "unsupervised learning" algorithms, we do <strong>not</strong> get the right answers in the training data. In fact sometimes, there is no right answer at all, as I will show below.</p><p>The above explanation seems to be very vague, so lets dig deeper with the help of an example.</p><p><iframe allowfullscreen="" frameborder="0" height="461" mozallowfullscreen="" msallowfullscreen="" oallowfullscreen="" src="https://www.flickr.com/photos/giladlotan/5151742603/player/0c0134107b" webkitallowfullscreen="" width="500"></iframe></p><p>The above image is a snippet of the facebook social graph; it's a graph of how a user is connected to other users. It also shows clusters of users; groups of users who are very strongly/closely connected to each other. In such a dataset, as you would rightly guess, there is no "right answer". Basically the objective is to find this cluster/closeness attribute.</p><p>Similarly, if you see <a href='http://archive.ics.uci.edu/ml/datasets/3D+Road+Network+(North+Jutland,+Denmark'>this</a>) dataset, it's about the road network in North Jutland, Denmark in 3d (longitude, latitude, altitude). If the dataset is used to find information/knowledge which will be used to perform accurate routing for eco-routing, cyclist routes, etc, then there is no right answer which is present inside the dataset. The task is for the program to learn the structure of the data itself and find out interesting knowledge from it.</p><p>Some other examples of unsupervised learning are:</p><ul><li>google news: it puts similar news, from various channels/websites, into similar (correct) sections</li><li>organizing computer clusters in a data-center: based on network activity between them, for example</li><li>market segmentation</li><li>social network analysis</li><li>astronomical data analysis</li><li>etc</li></ul><p>Lets move on to the next type of ML algorithm, which is "recommender systems". The easiest way to imagine this algorithm is to understand an example that we have all experienced at some time or the other &amp;ndash; e-commerce websites. I am sure you all would have noticed that when we buy something online, we are recommended other objects, for which there is a higher probability of us buying; for example, books from same author or on same topic, or movies from same genre, etc.</p><p>In ML, there are certain ways in which these systems are implemented. But don't you worry. We will be looking into all of these algorithms in much more depth in the forthcoming posts. So keep tuned :)</p>
 </div>
 
@@ -83,12 +84,12 @@
 
         <div class="col-md-3">
             <div id="sidebar">
-                <h3>Links</h3>
+                <!--<h3>Links</h3>
                 <ul id="links">
                     <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    <li><a href="http://carmenla.me/blog/archives">Carmen's Blog</a></li>
                     
-                </ul>
+                </ul>-->
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
@@ -100,6 +101,14 @@
                         
                         <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
                         
+                        <li><a href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -107,12 +116,12 @@
             </div>
         </div>
     </div>
-    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+    <footer>Copyright &copy;  Pradnyesh Sawant
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Today is better than yesterday!: ml-502: Hypothesis Representation and Decision Boundary</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -53,13 +54,13 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">9 February, 2014</div>
+        <div class="col-lg-6">February 9, 2014</div>
         
     </div>
     <h2>ml-502: Hypothesis Representation and Decision Boundary</h2>
 </div>
 <div>
-    </ol class="contents">
+    
     <p><p>Hello! In the last <a href='http://www.golb.in/ml-501-logistic-regression-51.html'>post</a> we took an initial swing at a new type of ML problem, viz classification. We also looked at how the ML linear regression algorithm fails to work for this type of problem, and saw that there is another ML algorithm, logistic regression, that is used to solve them. Today we will do a deeper dive into various concepts surrounding the logistic regression ML algorithm.</p><p>We saw in the last <a href='http://www.golb.in/ml-501-logistic-regression-51.html'>post</a> that we want:</p><blockquote><p> 0 &lt;= h<sub>&theta;</sub>(x) &lt;= 1 </p></blockquote><p>In linear regression, we know that:</p><blockquote><p> h<sub>&theta;</sub>(x) = &theta;' * x </p></blockquote><p>In logistic regression, we will define:</p><blockquote><p> h<sub>&theta;</sub>(x) = g(&theta;' * x) </p></blockquote><p>where,</p><blockquote><p> g(z) = 1 / (1 + e<sup>-z</sup>) </p></blockquote><p>g(z) is called the logistic or sigmoid function (hence the name "logistic" regression for this algorithm). The graph (z v/s g(z)) of the sigmoid function looks like:</p><p>![]() </p><p>As you might notice, the sigmoid function has this interesting that it asymptotes at 0 as g(z) nears -infinity, and asymptotes at 1 as g(z) nears +infinity. This property makes this function extremely useful in our logistic regression implementation. Also, notice in the above graph that</p><blockquote><p> g(z) &gt;= 0.5 when z &gt;= 0 </p></blockquote><p>and</p><blockquote><p> g(z) &lt; 0.5 when z &lt; 0 </p></blockquote><p>that is</p><blockquote><p> h<sub>&theta;</sub>(x) = g(&theta;' <em> x) &gt;= 0.5, whenever (&theta;' </em> x) &gt;= 0 </p></blockquote><p>and</p><blockquote><p> h<sub>&theta;</sub>(x) = g(&theta;' <em> x) &lt; 0.5, whenever (&theta;' </em> x) &lt; 0 </p></blockquote><p>We would define our threshold such that</p><blockquote><p> y = 1 if h<sub>&theta;</sub>(x) &gt;= 0.5 </p></blockquote><p>and</p><blockquote><p> y = 0 if h<sub>&theta;</sub>(x) &lt; 0.5 </p></blockquote><p>Combining the above 2 we get</p><blockquote><p> "y = 1" if (&theta;' &#42;x) &gt;= 0 </p></blockquote><p>and</p><blockquote><p> "y = 0" if (&theta;' &#42;x) &lt; 0 </p></blockquote><p>Remember this condition, because it will be used when we try to understand the next important concept of "decision boundary".</p><p>Anyways, coming back to our hypothesis function, it becomes:</p><blockquote><p> h<sub>&theta;</sub>(x) = 1 / (1 + e<sup>-(&theta;' * x)</sup>) </p></blockquote><p>This might seem confusing to understand, so let's try to put it in simpler terms. The meaning of the output of hypothesis function is "estimated probability that 'y = 1' on input 'x'". For example, if</p><blockquote><p> x = [x<sub>0</sub> x<sub>1]'</sub> = [1 tumorSize]' </p></blockquote><p>and if, for this x</p><blockquote><p> h<sub>&theta;</sub>(x) = 0.7 </p></blockquote><p>then, it means that the probability that the tumor is malignant is 70%. Mathematically, it is written as</p><blockquote><p> h<sub>&theta;</sub>(x) = P(y = 1 | x; &theta;) </p></blockquote><p>and is read is "probability that 'y = 1', given 'x', parameterized by '&theta;'". Conversely, probability for 'y = 0' is</p><blockquote><p> P(y = 0 | x; &theta;) = 1 - P(y = 1 | x; &theta;) </p></blockquote><p>Next, let's look at another important concept called the "decision boundary". To explain this let us consider the following dataset:</p><p>![]() </p><p>Let us also define our hypothesis function as</p><blockquote><p> h<sub>&theta;</sub>(x) = &theta;<sub>0</sub> + &theta;<sub>1</sub> x<sub>1</sub>, &theta;<sub>2</sub> x<sub>2</sub> </p></blockquote><p>and assume that we have somehow found the values of &theta; already as:</p><blockquote><p> &theta; = [-4 1 1]' </p></blockquote><p>So our hypothesis function becomes (based on our previously noted equation above) to predict:</p><blockquote><p> "y = 1" if -4 + x1 + x2 &gt;= 0 </p></blockquote><p>or</p><blockquote><p> "y = 1" if x1 + x2 &gt;= 4 </p></blockquote><p>Similarly,</p><blockquote><p> "y = 0" if x1 + x2 &lt; 4 </p></blockquote><p>![]() </p><p>The line in the above graph that separates the 2 binary classes "y = 1" and "y = 0" is called the decision boundary. It is extremely important to note that the decision boundary is the property of the hypothesis function and is parameterized by &theta;, and is not dependent on the dataset.</p><p>I think it has been a bit heavy today, so let's stop here. In the next post, we will take a look at some other, more interesting, decision boundaries and understand more about them. So stay tuned!</p>
 </div>
 
@@ -83,12 +84,12 @@
 
         <div class="col-md-3">
             <div id="sidebar">
-                <h3>Links</h3>
+                <!--<h3>Links</h3>
                 <ul id="links">
                     <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    <li><a href="http://carmenla.me/blog/archives">Carmen's Blog</a></li>
                     
-                </ul>
+                </ul>-->
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
@@ -100,6 +101,14 @@
                         
                         <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
                         
+                        <li><a href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -107,12 +116,12 @@
             </div>
         </div>
     </div>
-    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+    <footer>Copyright &copy;  Pradnyesh Sawant
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

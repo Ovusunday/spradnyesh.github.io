@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Today is better than yesterday!: Git week: part - 2</title>
-    <link rel="canonical" href="http://spradnyesh.github.io/posts/2013-12-19-git-week-part-2.html">
+    <title>Today is better than yesterday!</title>
+    <link rel="canonical" href="http://spradnyesh.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
@@ -52,36 +52,71 @@
             <div id="content">
                 
 <div id="post">
-    <div class="post-header">
-    <div id="post-meta" class="row">
-        <div class="col-lg-6">December 19, 2013</div>
-        
-    </div>
-    <h2>Git week: part - 2</h2>
-</div>
-<div>
     
-    <p>Hello again! Today we will see some more git magic. (Click <a href='http://www.golb.in/git-week-part-1-13.html'>here</a> to see my previous post on git.)</p><p>This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p><p>The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p><pre><code>git filter-branch --commit-filter 'GIT&#95;COMMITTER&#95;NAME=&quot;&lt;new-name&gt;&quot;; GIT&#95;AUTHOR&#95;NAME=&quot;&lt;new-name&gt;&quot;; GIT&#95;COMMITTER&#95;EMAIL=&quot;&lt;new-email&gt;&quot;; GIT&#95;AUTHOR&#95;EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;' HEAD
-</code></pre><p>Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href='http://stackoverflow.com/a/870367'>here</a>.</p><p>The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p><p>But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:</p><pre><code>git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD
-rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&amp;amp;nbsp; git gc --aggressive --prune&lt;/blockquote&gt;
-</code></pre><p>Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:</source></date-in-yyyymmdd-format></p><pre><code>git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-&#42;&quot; HEAD
-rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&amp;amp;nbsp; git gc --aggressive --prune&lt;/yyyymm&gt;&lt;/blockquote&gt;
-</code></pre><p>The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p><p>With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p><p>Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
-</div>
-
+    <div class="post-header">
+        <h2>Virtualbox guest-additions on Sabayon linux</h2>
+        <div id="post-meta">
+            
+            <div class="date">October 11, 2013</div>
+        </div>
+    </div>
+    <p>First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)</p><p>With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((</p>
+    <a href="/posts/2013-10-11-virtualbox-guest-additions-on-sabayon-linux.html">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2>To b(log) or not to b(log)</h2>
+        <div id="post-meta">
+            
+            <div class="date">March 3, 2013</div>
+        </div>
+    </div>
+    <blockquote><p><a href="http://en.wikipedia.org/wiki/To_be,_or_not_to_be" shape="rect">To be, or not to be, that is the question</a></p></blockquote><p>That is the opening phrase of a soliloquy in <a href="http://en.wikipedia.org/wiki/William_Shakespeare" shape="rect">William Shakespeare</a>'s play <a href="http://en.wikipedia.org/wiki/Hamlet" shape="rect">Hamlet</a>. That is a very serious question, and believe me, we are not going to discuss something that important. But what we are going to discuss is an interesting, if not important, question: to blog, or not to blog.</p>
+    <a href="/posts/2013-03-03-to-blog-or-not-to-blog.html">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2>Writing Flavors</h2>
+        <div id="post-meta">
+            
+            <div class="date">January 3, 2013</div>
+        </div>
+    </div>
+    <p>As a birthday gift to my wife, I released this <a href="http://www.golb.in/" shape="rect">website</a> on her birthday and uploaded the articles that I had written already. I asked my wife to read them and give me feedback. Personally, I would have rated them in the order of:</p><ul><li>What makes you, you?</li><li>Forgetting "forgive and forget"</li><li>Discovering the joy of writing</li></ul>
+    <a href="/posts/2013-01-03-writing-flavors.html">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2>What makes you you?</h2>
+        <div id="post-meta">
+            
+            <div class="date">December 26, 2012</div>
+        </div>
+    </div>
+    <p>I'm sure you have wondered, at some time or the other, "who am i?" Probably, you are the kind of person who has meditated over it, or you might be the kind who does not give it a second thought. Probably you were born in a culture, like the <a href="http://en.wikipedia.org/wiki/Culture_of_India" shape="rect">Indian culture</a>, where you have heard this question from your elders, or from stories in your childhood. Probably you have gone one step further and wondered or heard questions like "<a href="http://www.gocomics.com/calvinandhobbes/1988/04/01" shape="rect">why am i here</a>?" or "what am i here for?"</p><p>But have you ever wondered what does it mean to "be me"? Over any period of time, be it short or long, we are continuously changing. Changing physically - children grow up, adults grow old; emotionally - our moods keep changing constantly; and in many other ways - life is change! But there is one thing that never changes, the feeling of "me". No matter where we are, in what place, in what situation, we always know our "selves". How does this happen? In fact, what is this self?</p>
+    <a href="/posts/2012-12-26-what-makes-you-you.html">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
+        <h2>Forgetting &quot;forgive and forget&quot;</h2>
+        <div id="post-meta">
+            
+            <div class="date">December 24, 2012</div>
+        </div>
+    </div>
+    <p><a href="http://en.wikipedia.org/wiki/Albert_Einstein" shape="rect">Albert Einstein</a> once said</p><blockquote><p> Use the brain to process (think), not to store (remember). </p></blockquote>
+    <a href="/posts/2012-12-24-forgetting-forgive-and-forget.html">Continue reading &#8594;</a>
+    <hr>
+    
 
     <div id="prev-next">
         
-        <a href="/posts/2013-12-21-git-week-part-3.html">&laquo; Git week: part - 3</a>
+        <a class="left" href="/p/10.html">&laquo; Prev</a>
         
         
-        <a class="right" href="/posts/2013-12-18-git-week-part-1.html">Git week: part - 1 &raquo;</a>
+        <a class="right" href="/p/12.html">Next &raquo;</a>
         
     </div>
-
-    
-
-
 </div>
 
             </div>

@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
 <channel>
-<atom:link href='http://blog.gryff.in/' rel='self' type='application/rss+xml'/>
+<atom:link href='http://spradnyesh.github.io/' rel='self' type='application/rss+xml'/>
 <title>
 Today is better than yesterday!
 </title>
 <link>
-http://blog.gryff.in/
+http://spradnyesh.github.io/
 </link>
 <description>
 This blog is awesome
 </description>
 <lastBuildDate>
-Sat, 07 Nov 2015 10:52:02 +0530
+Sat, 11 Jun 2016 10:40:29 +0530
 </lastBuildDate>
 <generator>
 clj-rss

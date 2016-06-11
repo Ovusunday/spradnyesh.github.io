@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Today is better than yesterday!: ml-501: Logistic Regression</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2014-02-08-ml-501-logistic-regression.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -53,13 +54,13 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">8 February, 2014</div>
+        <div class="col-lg-6">February 8, 2014</div>
         
     </div>
     <h2>ml-501: Logistic Regression</h2>
 </div>
 <div>
-    </ol class="contents">
+    
     <p>Hello :) I have a good news today! If you have not noticed, we have moved from the 40x series into the 50x series of ML posts today. Yay! This means that we will start learning a new section, or type of ML algorithms. But wait, isn't that logistic "regression" there in the title? Haven't we been learning regression algorithms already in the 40x series <a href='http://www.golb.in/ml-306-multivariate-linear-regression-44.html'>here</a>, <a href='http://www.golb.in/ml-402-multivariate-linear-regression-in-octave-45.html'>here</a>, <a href='http://www.golb.in/ml-403-feature-scaling-47.html'>here</a>, <a href='http://www.golb.in/ml-404-feature-choice-and-polynomial-regression-48.html'>here</a>, <a href='http://www.golb.in/ml-405-normal-equation-part-1-49.html'>here</a> and <a href='http://www.golb.in/ml-406-normal-equation-part-2-50.html'>here</a>. The reason this is so is because we will look at a different type of ML problem, viz "classification" in this 50x series, but for historical reasons these algorithms are called logistic regression. Note the "logistic" part, which means "logical", or "classes". Ready to start? Here we go!</p><p>Today we will be learning the "classification" type of ML problem, where the output variable "y" is a set of "discrete" values. If you remember, we had given a brief introduction to these problems in this 10x introductory <a href='http://www.golb.in/ml-102-supervised-learning-34.html'>post</a>. But now, let's take a deeper look using some examples:</p><ul><li>email spam: In the email spam classification, we have a spam classifier ML implementation which, given a text of email, classifies it as either "yes" (spam), or "no" (not-spam)</li><li>online transactions: In this case, the problem statement is to classify a particular online transaction as either "fraudulent" or "not-fraudulent"</li><li>tumor: In this problem, the ML implementation should tell whether a given tumor is "benign" (not-harmful), or malignant (harmful)</li></ul><p>In all of the above cases, the output variable "y" can take one of 2 values, "yes" or "no". Traditionally, this has been represented as "class-1" (presence of something), or "class-0" (absence of something), but this assignment is mostly arbitrary. Also, in the above cases, there are only 2 values, and hence the classification is also known as a binary-class classification; whereas when there are more than 2 values, then the algorithm is known as a multi-class classification.</p><p>Since this is the first post in the "classification" domain, we will keep it simple and look at only the binary-class classification type of problems today. So let's move onto the problem statement for today's example.</p><p>![]()</p><p>In this example:</p><ul><li>X: tumor size</li><li>y: 1 (malignant), 0 (benign)</li></ul><p>That is, given just the tumor size, we need to predict whether the tumor is malignant or benign. The sample data looks like shown above. Notice that all data points are either at "y = 0", or "y = 1", signifying that this is a classification problem.</p><p>![]()</p><p>Let's say that, since we have not learnt the logistic regression ML algorithm yet, we will apply the linear regression ML algorithm, that we already know, and see how it performs. After running linear regression, we get our hypothesis line as shown in the above figure. In this case, if we define a threshold as:</p><blockquote><p> if h<sub>&theta;</sub>(x) &gt;= 0.5, predict "y = 1" </p></blockquote><blockquote><p> if h<sub>&theta;</sub>(x) &lt; 0.5, predict "y = 0" </p></blockquote><p>then it looks like our linear regression implementation has done a pretty good job of classifying the benign and malignant examples correctly, and is in fact working as a logistic regression algorithm.</p><p>![]()</p><p>However, if we get another data point, an outlier actually, then we get a different hypothesis function as shown in the above figure. But this time, we see that our new hypothesis function performs terribly on the data, and is in fact mis-classifying the malignant examples as benign. What really happened is that the first time, our linear regression implementation turned out to be lucky. In general, the linear regression does not work well for classification problems.</p><p>In the next post we will look at the linear regression algorithm itself and how it is used to solve a classification ML problem. So stay tuned!</p>
 </div>
 
@@ -83,12 +84,12 @@
 
         <div class="col-md-3">
             <div id="sidebar">
-                <h3>Links</h3>
+                <!--<h3>Links</h3>
                 <ul id="links">
                     <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="http://carmenla.me/blog/index.html">Carmen's Blog</a></li>
+                    <li><a href="http://carmenla.me/blog/archives">Carmen's Blog</a></li>
                     
-                </ul>
+                </ul>-->
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
@@ -100,6 +101,14 @@
                         
                         <li><a href="/posts/2014-02-17-ml-504-cost-function-for-logistic-regression.html">ml-504: Cost Function and Logistic Regression</a></li>
                         
+                        <li><a href="/posts/2014-02-10-ml-503-non-linear-decision-boundary.html">ml-503: Non Linear Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
+                        
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -107,12 +116,12 @@
             </div>
         </div>
     </div>
-    <footer>Copyright &copy; 2015 Pradnyesh Sawant
+    <footer>Copyright &copy;  Pradnyesh Sawant
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="../js/highlight.pack.js" type="text/javascript"></script>
+<script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
