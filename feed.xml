@@ -12,11 +12,31 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Sat, 11 Jun 2016 16:20:34 +0530
+Fri, 08 Jul 2016 12:10:38 +0530
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
+<item>
+<guid>
+http://spradnyesh.github.io/posts/2016-07-08-default-value-for-input-when-using-reagent.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2016-07-08-default-value-for-input-when-using-reagent.html
+</link>
+<title>
+Issue w/ default-value using reagent and rendering multiple times
+</title>
+<description>
+&lt;p&gt;currently i am creating a hybrid mobile app using &lt;a href='https://github.com/clojure/clojurescript'&gt;clojurescript&lt;/a&gt; and the amazing &lt;a href='https://reagent-project.github.io/'&gt;reagent&lt;/a&gt; library&lt;/p&gt;&lt;p&gt;during development i faced an issue w/ the &quot;default-value&quot; of an &quot;input&quot; tag. the way to reproduce the issue is as follows:&lt;/p&gt;&lt;p&gt;&lt;code data-gist-id=&quot;e64770bd276ddb99d60b81ac5b0f6ead&quot; data-gist-file=&quot;reagent-default-1.cljs&quot;&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;where&lt;/p&gt;&lt;ul&gt;&lt;li&gt;we have 2 pages &quot;from&quot; and &quot;to&quot; and control cycles between them (they are rendered one after the other in cycles), starting from &quot;from&quot;&lt;/li&gt;&lt;li&gt;&quot;to&quot; has a &quot;form&quot; w/ an &quot;input&quot; (type=text) field that has the &quot;default-value&quot; set to &quot;hi there&quot;&lt;/li&gt;&lt;li&gt;what i noticed is that the 1st time that &quot;to&quot; was rendered, &quot;hi there&quot; was shown in the &quot;input&quot;&lt;/li&gt;&lt;li&gt;but if you&lt;ul&gt;&lt;li&gt;change the value in the input (to say &quot;hello world&quot;)&lt;/li&gt;&lt;li&gt;go to &quot;from&quot; (by clicking &quot;Submit&quot;)&lt;/li&gt;&lt;li&gt;come again to &quot;to&quot; (by clicking &quot;Click Me&quot;)&lt;/li&gt;&lt;li&gt;then the value shown for &quot;input&quot; becomes &quot;hello world&quot;, instead of the expected &quot;hi there&quot;&lt;/li&gt;&lt;li&gt;this was confusing because, i expected &quot;hi there&quot; to be shown since (according to me) &quot;to&quot; was being rendered &quot;freshly&quot; (everytime control moved from &quot;from&quot; to &quot;to&quot;)&lt;/li&gt;&lt;li&gt;the reason for this is that, as mentioned in the &quot;Default Value -&gt; Note&quot; on &lt;a href='https://facebook.github.io/react/docs/forms.html'&gt;react forms docs&lt;/a&gt;, the &quot;defaultValue&quot; works only on the initial render. it also says that &quot;If you need to update the value in a subsequent render, you will need to use a &lt;a href='https://facebook.github.io/react/docs/forms.html#controlled-components'&gt;controlled component&lt;/a&gt;.&quot;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;so we need to maintain the state for the &quot;input&quot; component as follows&lt;/p&gt;&lt;p&gt;&lt;code data-gist-id=&quot;e64770bd276ddb99d60b81ac5b0f6ead&quot; data-gist-file=&quot;reagent-default-2.cljs&quot;&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;fortunately, react has come up w/ a new &lt;a href='https://facebook.github.io/react/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html'&gt;version v0.4&lt;/a&gt; which says that the behavior discussed above was a common pattern and has been implemented. and we should hopefully see the same supported in the next version of reagent too!&lt;/p&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Fri, 08 Jul 2016 00:00:00 +0530
+</pubDate>
+</item>
 <item>
 <guid>
 http://spradnyesh.github.io/posts/2016-06-11-cryogen-on-github.html
@@ -493,6 +513,26 @@ Tue, 28 Jan 2014 00:00:00 +0530
 </item>
 <item>
 <guid>
+http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
+</link>
+<title>
+Golbin updates: bug fixes and new features
+</title>
+<description>
+&lt;p&gt;Hi! We hope that you are liking the various stories that you see here on &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;. We are always striving not only to bring you quality content that will interest you, but are also adding new features to the site. As we have mentioned previously &lt;a href='http://www.golb.in/lazyload-google-ads-without-jquery-lazyload-ad-plugin-27.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/more-exciting-new-features-for-golbin-25.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/speed-your-website-100-times-11.html'&gt;here&lt;/a&gt; and &lt;a href='http://www.golb.in/exciting-new-features-on-golbin-9.html'&gt;here&lt;/a&gt;, we have regularly added new features, and we sincerely hope that you like them :)&lt;/p&gt;&lt;/p&gt;&lt;p&gt;In today's release we have made the following changes:&lt;/p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;CSS fix&lt;/b&gt;: We have fixed some css issues (especially related to 'table', and 'li' elements) that made some of the articles look bad&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;image size&lt;/b&gt;: In the recent articles (&lt;a href='http://www.golb.in/org-mode-32.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/vimperator-part-2-31.html'&gt;here&lt;/a&gt;, etc), the images inside the article were of very small size (width = 300px) due to which they were not able to deliver the content that they were supposed to. This irritating issue has been fixed&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;future publish&lt;/b&gt;: We have added a new feature to the editorial site so that an author can enter any date-time in the future and publish the article. The article will get saved in the &quot;draft&quot; mode and will automatically be published on the said date-time. This will allow the authors to write stories in advance for an event and be rid of the worry of needing to publish it on the desired date-time. Ain't it cool?&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;auto archival&lt;/b&gt;: This is another great feature that we have added to the editorial site. Actually, to be honest, it always existed, but was not visible to authors due to a bug that has now been fixed. The feature is that every time an author publishes his article, it gets saved on the &lt;a href='http://web.archive.org'&gt;web.archive.org&lt;/a&gt; website. For example the last &lt;a href='http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;article&lt;/a&gt; got archived &lt;a href='http://web.archive.org/web/20140124145929/http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;here&lt;/a&gt;. This is an important feature because it will allow resolution of issues in case there is a plagiarism issue recorded (by or against &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;)&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If all this sounds great to you, do share it with others, and surely leave your comments/feedback. Better still, why don't you join us share your stories; after all that is why this website exists, doesn't it?&lt;/p&gt;&lt;/p&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Mon, 27 Jan 2014 00:00:00 +0530
+</pubDate>
+</item>
+<item>
+<guid>
 http://spradnyesh.github.io/posts/2014-01-27-ml-302-intuition-for-univariate-linear-regression.html
 </guid>
 <link>
@@ -533,26 +573,6 @@ plot&amp;#40;theta, costs&amp;#41;;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;![]()&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#91;a, b&amp;#93; = min&amp;#40;costs&amp;#41;
 theta&amp;#40;b&amp;#41;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Our cost-function (J) is minimum (122.80) when theta = 0; but that is not the point. The point is that the above curve is a 'convex' curve, and has a global minimum. In the next post we are going to learn techniques to find this global minimum value, so keep watching this space for that!&lt;/p&gt;&lt;p&gt;I hope that the above explanation convinces you that:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;the cost function is defined in such a way that it has a global minimum (that needs to be found)&lt;/li&gt;&lt;li&gt;once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.&lt;/p&gt;
-</description>
-<enclosure>
-
-</enclosure>
-<pubDate>
-Mon, 27 Jan 2014 00:00:00 +0530
-</pubDate>
-</item>
-<item>
-<guid>
-http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
-</guid>
-<link>
-http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
-</link>
-<title>
-Golbin updates: bug fixes and new features
-</title>
-<description>
-&lt;p&gt;Hi! We hope that you are liking the various stories that you see here on &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;. We are always striving not only to bring you quality content that will interest you, but are also adding new features to the site. As we have mentioned previously &lt;a href='http://www.golb.in/lazyload-google-ads-without-jquery-lazyload-ad-plugin-27.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/more-exciting-new-features-for-golbin-25.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/speed-your-website-100-times-11.html'&gt;here&lt;/a&gt; and &lt;a href='http://www.golb.in/exciting-new-features-on-golbin-9.html'&gt;here&lt;/a&gt;, we have regularly added new features, and we sincerely hope that you like them :)&lt;/p&gt;&lt;/p&gt;&lt;p&gt;In today's release we have made the following changes:&lt;/p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;CSS fix&lt;/b&gt;: We have fixed some css issues (especially related to 'table', and 'li' elements) that made some of the articles look bad&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;image size&lt;/b&gt;: In the recent articles (&lt;a href='http://www.golb.in/org-mode-32.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/vimperator-part-2-31.html'&gt;here&lt;/a&gt;, etc), the images inside the article were of very small size (width = 300px) due to which they were not able to deliver the content that they were supposed to. This irritating issue has been fixed&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;future publish&lt;/b&gt;: We have added a new feature to the editorial site so that an author can enter any date-time in the future and publish the article. The article will get saved in the &quot;draft&quot; mode and will automatically be published on the said date-time. This will allow the authors to write stories in advance for an event and be rid of the worry of needing to publish it on the desired date-time. Ain't it cool?&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;auto archival&lt;/b&gt;: This is another great feature that we have added to the editorial site. Actually, to be honest, it always existed, but was not visible to authors due to a bug that has now been fixed. The feature is that every time an author publishes his article, it gets saved on the &lt;a href='http://web.archive.org'&gt;web.archive.org&lt;/a&gt; website. For example the last &lt;a href='http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;article&lt;/a&gt; got archived &lt;a href='http://web.archive.org/web/20140124145929/http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;here&lt;/a&gt;. This is an important feature because it will allow resolution of issues in case there is a plagiarism issue recorded (by or against &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;)&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If all this sounds great to you, do share it with others, and surely leave your comments/feedback. Better still, why don't you join us share your stories; after all that is why this website exists, doesn't it?&lt;/p&gt;&lt;/p&gt;
 </description>
 <enclosure>
 

@@ -54,10 +54,21 @@
 <div id="post">
     
     <div class="post-header">
+        <h2>ml-302: Intuition for Linear Regression</h2>
+        <div id="post-meta">
+            
+            <div class="date">27 January, 2014</div>
+        </div>
+    </div>
+    <p>Hello! Welcome back. Last time we studied the "univariate linear regression" ML algorithm <a href="http://www.golb.in/ml-301-linear-regression-with-one-variable-38.html" shape="rect">here</a>. That time we took in a lot of new concepts, and not everything might be clear to all. So today we will dig a bit deeper into the various components and try to understand how and why they work correctly. This will help us analyze if our implementation is working correctly and also to debug things if it is not.</p><p>So lets begin with a quick review. First, the terminology</p>
+    <a href="/posts/2014-01-27-ml-302-intuition-for-univariate-linear-regression.html">Continue reading &#8594;</a>
+    <hr>
+    
+    <div class="post-header">
         <h2>ml-301: Linear Regression with one variable</h2>
         <div id="post-meta">
             
-            <div class="date">January 26, 2014</div>
+            <div class="date">26 January, 2014</div>
         </div>
     </div>
     <p>Welcome back! After having gone through some posts on introduction to ML (<a href="http://www.golb.in/ml-101-introduction-to-machine-learning-33.html" shape="rect">here</a>, <a href="http://www.golb.in/ml-102-supervised-learning-34.html" shape="rect">here</a>, <a href="http://www.golb.in/ml-103-unsupervised-learning-and-recommender-systems-35.html" shape="rect">here</a>, <a href="http://www.golb.in/ml-201-octave-1-36.html" shape="rect">here</a> and <a href="http://www.golb.in/ml-202-octave-2-37.html" shape="rect">here</a>), lets now start learning a real ML algorithm. The algorithm that we will study today is a <a href="http://www.golb.in/ml-102-supervised-learning-34.html" shape="rect">supervised learning</a> regression algorithm.</p><p>First lets define the problem statement. Today we will use a subset of <a href="http://archive.ics.uci.edu/ml/datasets/Auto+MPG" shape="rect">this</a><a href="http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data" shape="rect">data</a>. The first few training examples in the data are:</p>
@@ -68,7 +79,7 @@
         <h2>ml-202: octave -- part - 2</h2>
         <div id="post-meta">
             
-            <div class="date">January 25, 2014</div>
+            <div class="date">25 January, 2014</div>
         </div>
     </div>
     <p>Hi there, welcome back! In the last <a href="http://www.golb.in/ml-201-octave-1-36.html" shape="rect">post</a>, we looked at some basic <a href="http://www.gnu.org/software/octave/doc/interpreter/index.html" shape="rect">octave</a> commands. Today we will dig deeper into octave and understand more concepts and commands. I hope you are eager and excited, so lets begin!</p><p><b>Plotting</b>: One of the most important things that we do during implementing ML algorithms is to plot data. This is done to</p>
@@ -79,7 +90,7 @@
         <h2>ml-201: octave -- part - 1</h2>
         <div id="post-meta">
             
-            <div class="date">January 24, 2014</div>
+            <div class="date">24 January, 2014</div>
         </div>
     </div>
     <p>Hi again! In the previous posts <a href="http://www.golb.in/ml-101-introduction-to-machine-learning-33.html" shape="rect">here</a>, <a href="http://www.golb.in/ml-102-supervised-learning-34.html" shape="rect">here</a> and <a href="http://www.golb.in/ml-103-unsupervised-learning-and-recommender-systems-35.html" shape="rect">here</a>, we did pretty theoretical and very basic introduction. But starting now (notice the <b>201</b> in the title of the article?), we will be digging deeper into specific algorithms, their working, intuition and implementation. But before we go there, we need to get familiar with some background setup.</p><p>Firstly, you should have atleast some basic knowledge of the following disciplines of mathematics:</p>
@@ -90,22 +101,11 @@
         <h2>ml-103: Unsupervised learning and Recommender systems</h2>
         <div id="post-meta">
             
-            <div class="date">January 23, 2014</div>
+            <div class="date">23 January, 2014</div>
         </div>
     </div>
     <p>Hello :) In the last 2 posts <a href="http://www.golb.in/ml-101-introduction-to-machine-learning-33.html" shape="rect">here</a> and <a href="http://www.golb.in/ml-102-supervised-learning-34.html" shape="rect" target="_blank">here</a>, we got a general overview of what Machine learning is and also looked at a particular category ML algorithms, viz the "supervised learning" type.</p><p>Today we will briefly look at 2 more types of ML algorithms, viz the "unsupervised learning" and "recommender systems". I hope you remember that in the supervised learning types of ML algorithms, we get the "right answers" embedded in the training data. As against this, in the "unsupervised learning" algorithms, we do <strong>not</strong> get the right answers in the training data. In fact sometimes, there is no right answer at all, as I will show below.</p>
     <a href="/posts/2014-01-23-ml-103-unsupervised-learning-and-recommender-systems.html">Continue reading &#8594;</a>
-    <hr>
-    
-    <div class="post-header">
-        <h2>ml-102: Supervised Learning</h2>
-        <div id="post-meta">
-            
-            <div class="date">January 22, 2014</div>
-        </div>
-    </div>
-    <p>Hi! I hope you enjoyed the last <a href="http://www.golb.in/ml-101-introduction-to-machine-learning-33.html" shape="rect">post</a> on introduction to ML. Today we will dig just a little bit deeper and understand the various types of ML algorithms. Although not complete, some of the different types of ML algorithms are:</p><ul><li>Supervised learning</li><li>Unsupervised learning</li><li>Recommender systems</li></ul>
-    <a href="/posts/2014-01-22-ml-102-supervised-learning.html">Continue reading &#8594;</a>
     <hr>
     
 
@@ -135,6 +135,8 @@
                     <h3>Recent Posts</h3>
                     <ul>
                         
+                        <li><a href="/posts/2016-07-08-default-value-for-input-when-using-reagent.html">Issue w/ default-value using reagent and rendering multiple times</a></li>
+                        
                         <li><a href="/posts/2016-06-11-cryogen-on-github.html">cryogen based static site on github</a></li>
                         
                         <li><a href="/posts/2016-06-11-lightdm-passwordless-login.html">passwordless login in lightdm</a></li>
@@ -149,6 +151,10 @@
                         
                         <li><a href="/posts/2014-02-09-ml-502-hypothesis-representation-and-decision-boundary.html">ml-502: Hypothesis Representation and Decision Boundary</a></li>
                         
+                        <li><a href="/posts/2014-02-08-ml-501-logistic-regression.html">ml-501: Logistic Regression</a></li>
+                        
+                        <li><a href="/posts/2014-02-07-ml-406-normal-equation-part-2.html">ml-406: Normal Equation -- part - 2</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -159,19 +165,35 @@
                         
                         <li><a href="/cryogen.html">cryogen</a></li>
                         
+                        <li><a href="/passwordless.html">passwordless</a></li>
+                        
                         <li><a href="/github.html">github</a></li>
                         
                         <li><a href="/clojure.html">clojure</a></li>
                         
-                        <li><a href="/static-site.html">static-site</a></li>
+                        <li><a href="/web.html">web</a></li>
                         
-                        <li><a href="/passwordless.html">passwordless</a></li>
+                        <li><a href="/hybrid.html">hybrid</a></li>
                         
                         <li><a href="/linux.html">linux</a></li>
                         
+                        <li><a href="/frontend.html">frontend</a></li>
+                        
+                        <li><a href="/static-site.html">static-site</a></li>
+                        
+                        <li><a href="/reagent.html">reagent</a></li>
+                        
                         <li><a href="/lightdm.html">lightdm</a></li>
                         
+                        <li><a href="/app.html">app</a></li>
+                        
+                        <li><a href="/render.html">render</a></li>
+                        
+                        <li><a href="/mobile.html">mobile</a></li>
+                        
                         <li><a href="/login.html">login</a></li>
+                        
+                        <li><a href="/react.html">react</a></li>
                         
                         <li><a href="/stumpwm.html">stumpwm</a></li>
                         
@@ -186,6 +208,8 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.4/gist-embed.min.js"></script>
 <script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>

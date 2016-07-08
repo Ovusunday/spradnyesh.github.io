@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Today is better than yesterday!: Busan week: day 5 -- Eulsukdo Eco Center</title>
-    <link rel="canonical" href="http://spradnyesh.github.io/posts/2014-01-14-busan-week-day-5-eulsukdo-eco-center.html">
+    <title>Today is better than yesterday!: Issue w/ default-value using reagent and rendering multiple times</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2016-07-08-default-value-for-input-when-using-reagent.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
@@ -54,23 +54,42 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">14 January, 2014</div>
+        <div class="col-lg-6">8 July, 2016</div>
         
     </div>
-    <h2>Busan week: day 5 -- Eulsukdo Eco Center</h2>
+    <h2>Issue w/ default-value using reagent and rendering multiple times</h2>
 </div>
 <div>
     
-    <p>Since today was the last day of tour, we decided to go for the "<a href='http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/'>Eulsukdo eco-center</a>" themed tour that we had missed on the unfortunate 3rd day. So we got up early and went to Busan station. But it looks like the Eulsukdo tour was jinxed. When I called the Busan city tour help-desk (+82-51-464-9898), they told me that both the morning and afternoon tours were fully reserved. Anyways, we were already in the bus and went to Busan station hoping that someone might skip (like we had on our 3rd day). We reached the station just a few minutes before the departure only to find out that there was just 1 empty seat. Dejected, we tried to decide what to do next. We had 3 options:</p><ul><li>Visit Beomeosa (<a href='http://en.wikipedia.org/wiki/Beomeosa'>[1</a>], <a href='http://koreantemples.com/?p%3D241'>[2</a>], <a href='http://www.tripadvisor.com/Attraction_Review-g297884-d615908-Reviews-Beomeosa_Temple-Busan.html'>[3</a>]) temple by ourselves</li></li><li>Visit <a href='http://www.busanhaps.com/article/history-hills-busans-gamcheon-culture-village'>Gamcheon</a> <a href='http://www.tripadvisor.com/Attraction_Review-g297884-d3901349-Reviews-Gamcheon_Culture_Village-Busan.html'>culture</a> village by ourselves</li></li><li>Go back to hotel and come back for afternoon tour</li></li></ul><p>We decided to do the third because we did not want to wander out on our own with a baby in our hands. We visited the Haeundae beach on our way back to the hotel, where we saw a lot of <a href='http://en.wikipedia.org/wiki/Black-legged_Kittiwake'>black-legged seagulls</a> up close</p><p><iframe allowfullscreen="" frameborder="0" height="375" mozallowfullscreen="" msallowfullscreen="" oallowfullscreen="" src="https://www.flickr.com/photos/spradnyesh/11624357126/player/b40239cac8" webkitallowfullscreen="" width="500"></iframe></p><p><iframe allowfullscreen="" frameborder="0" height="375" mozallowfullscreen="" msallowfullscreen="" oallowfullscreen="" src="https://www.flickr.com/photos/spradnyesh/11623801213/player/8e465e2903" webkitallowfullscreen="" width="500"></iframe></p><p>In the afternoon, we left early only to reach 40 mins before time for the Eulsukdo tour. This time our wait was fruitful because we were the 1st people to board the bus and got a good seat too. Unfortunately, there weren't any birds (other than ducks, which was not exciting at all) at the eco-center :(</p><p><iframe allowfullscreen="" frameborder="0" height="375" mozallowfullscreen="" msallowfullscreen="" oallowfullscreen="" src="https://www.flickr.com/photos/spradnyesh/11623740303/player/363e907ca3" webkitallowfullscreen="" width="500"></iframe></p><p>This marked the end of our tour, and the next day we traveled back from Busan to Suwon on the KTX. Although the train reached top speeds of 290+ kmph, it always did so when inside tunnels, so we weren't able to see outside. But we did notice our ears getting jammed, and could feel the speeds. Also, this time again, I tried to do the photography technique that I had mentioned in the day-1 post <a href='http://www.golb.in/busan-week-day-1-haeundae-beach-20.html'>here</a>. This time I had more success, but none of the photos turned out to be good enough. Even then, it was a good learning experience.</p><p>I hope you all loved the travelogue (older posts are <a href='http://www.golb.in/busan-week-day-1-haeundae-beach-20.html'>here</a>, <a href='http://www.golb.in/busan-week-day-2-yeonggung-sa-21.html'>here</a>, <a href='http://www.golb.in/busan-week-day-3-taejongdae-22.html'>here</a> and <a href='http://www.golb.in/busan-week-day-4-busan-aquarium-and-shinsegae-mall-23.html'>here</a>)! Do share your thoughts :)</p>
+    <p>currently i am creating a hybrid mobile app using <a href='https://github.com/clojure/clojurescript'>clojurescript</a> and the amazing <a href='https://reagent-project.github.io/'>reagent</a> library</p><p>during development i faced an issue w/ the "default-value" of an "input" tag. the way to reproduce the issue is as follows:</p><p><code data-gist-id="e64770bd276ddb99d60b81ac5b0f6ead" data-gist-file="reagent-default-1.cljs"></code></p><p>where</p><ul><li>we have 2 pages "from" and "to" and control cycles between them (they are rendered one after the other in cycles), starting from "from"</li><li>"to" has a "form" w/ an "input" (type=text) field that has the "default-value" set to "hi there"</li><li>what i noticed is that the 1st time that "to" was rendered, "hi there" was shown in the "input"</li><li>but if you<ul><li>change the value in the input (to say "hello world")</li><li>go to "from" (by clicking "Submit")</li><li>come again to "to" (by clicking "Click Me")</li><li>then the value shown for "input" becomes "hello world", instead of the expected "hi there"</li><li>this was confusing because, i expected "hi there" to be shown since (according to me) "to" was being rendered "freshly" (everytime control moved from "from" to "to")</li><li>the reason for this is that, as mentioned in the "Default Value -> Note" on <a href='https://facebook.github.io/react/docs/forms.html'>react forms docs</a>, the "defaultValue" works only on the initial render. it also says that "If you need to update the value in a subsequent render, you will need to use a <a href='https://facebook.github.io/react/docs/forms.html#controlled-components'>controlled component</a>."</li></ul></li></ul><p>so we need to maintain the state for the "input" component as follows</p><p><code data-gist-id="e64770bd276ddb99d60b81ac5b0f6ead" data-gist-file="reagent-default-2.cljs"></code></p><p>fortunately, react has come up w/ a new <a href='https://facebook.github.io/react/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html'>version v0.4</a> which says that the behavior discussed above was a common pattern and has been implemented. and we should hopefully see the same supported in the next version of reagent too!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/web.html">web</a>
+    
+    <a href="/hybrid.html">hybrid</a>
+    
+    <a href="/frontend.html">frontend</a>
+    
+    <a href="/reagent.html">reagent</a>
+    
+    <a href="/app.html">app</a>
+    
+    <a href="/render.html">render</a>
+    
+    <a href="/mobile.html">mobile</a>
+    
+    <a href="/react.html">react</a>
+    
 </div>
 
 
     <div id="prev-next">
         
-        <a href="/posts/2014-01-15-lazyload-google-ads-without-jquery-lazyload-ad-plugin.html">&laquo; Lazyload Google ads without jQuery LazyLoad ad plugin</a>
         
-        
-        <a class="right" href="/posts/2014-01-13-busan-week-day-4-busan-aquarium-and-shinsegae-mall.html">Busan week: day 4 -- Busan aquarium and Shinsaegae mall &raquo;</a>
+        <a class="right" href="/posts/2016-06-11-cryogen-on-github.html">cryogen based static site on github &raquo;</a>
         
     </div>
 
