@@ -3,7 +3,7 @@
 <channel>
 <atom:link href='http://spradnyesh.github.io/' rel='self' type='application/rss+xml'/>
 <title>
-Today is better than yesterday!
+Make today better than yesterday!
 </title>
 <link>
 http://spradnyesh.github.io/
@@ -12,11 +12,31 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Thu, 18 Aug 2016 10:51:27 +0530
+Thu, 18 Aug 2016 11:58:17 +0530
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
+<item>
+<guid>
+http://spradnyesh.github.io/posts/2016-08-18-moving-from-atlassian-to-phabricator.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2016-08-18-moving-from-atlassian-to-phabricator.html
+</link>
+<title>
+moving from atlassian products to phabricator
+</title>
+<description>
+&lt;p&gt;one of the most important tools that one needs when setting up the infrastructure in a new-company/startup is a system that allows the following features&lt;/p&gt;&lt;ul&gt;&lt;li&gt;user management&lt;/li&gt;&lt;li&gt;projects&lt;/li&gt;&lt;li&gt;wiki/documentation&lt;/li&gt;&lt;li&gt;ticketing (w/ support for sprints)&lt;/li&gt;&lt;li&gt;code repository hosting&lt;/li&gt;&lt;li&gt;code review&lt;/li&gt;&lt;li&gt;communication (chatting)&lt;/li&gt;&lt;li&gt;continuous-integration&lt;/li&gt;&lt;li&gt;integration of the above systems =&gt;&lt;ul&gt;&lt;li&gt;able to reference documentation from ticket and vice-versa&lt;/li&gt;&lt;li&gt;able to reference ticket in commit message (automated)&lt;/li&gt;&lt;li&gt;able to reference code commit in ticket (automated)&lt;/li&gt;&lt;li&gt;able to reference doc/ticket/commit in chats&lt;/li&gt;&lt;li&gt;able to reference tickets in CI runs and vice-versa&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;while we've been using &lt;a href='https://www.atlassian.com/'&gt;atlassian&lt;/a&gt; products (&lt;a href='https://www.atlassian.com/software/jira'&gt;jira&lt;/a&gt;, &lt;a href='https://www.atlassian.com/software/confluence'&gt;confluence&lt;/a&gt; and &lt;a href='https://www.atlassian.com/software/bitbucket'&gt;bitbucket&lt;/a&gt;) for about 4-5 months now, it has become restrictive due to the following reasons&lt;/p&gt;&lt;ul&gt;&lt;li&gt;paid costs escalate very quickly&lt;/li&gt;&lt;li&gt;critical components (like code-review) are absent or get missed if we try to keep costs under control&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;due to this we started looking at alternatives, and &lt;a href='https://www.phacility.com/phabricator/'&gt;phabricator&lt;/a&gt; turned out to be an awesome alternative due to&lt;/p&gt;&lt;ul&gt;&lt;li&gt;support all needed features out-of-box (or via plugins like ([sprint][https://github.com/wikimedia/phabricator-extensions-Sprint]))&lt;/li&gt;&lt;li&gt;free to host (supports unlimited users)&lt;/li&gt;&lt;li&gt;excellent integration across its sub-systems&lt;/li&gt;&lt;li&gt;good &lt;a href='https://secure.phabricator.com/book/phabricator/'&gt;documentation&lt;/a&gt;&lt;/li&gt;&lt;li&gt;good support over &lt;a href='http://stackoverflow.com/questions/tagged/phabricator'&gt;stackoverflow&lt;/a&gt;, etc&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;i have started setting up the system, and will write another post shortly about the steps and hiccups. so stay tuned :)&lt;/p&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Thu, 18 Aug 2016 00:00:00 +0530
+</pubDate>
+</item>
 <item>
 <guid>
 http://spradnyesh.github.io/posts/2016-07-08-default-value-for-input-when-using-reagent.html

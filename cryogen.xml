@@ -3,7 +3,7 @@
 <channel>
 <atom:link href='http://spradnyesh.github.io/' rel='self' type='application/rss+xml'/>
 <title>
-Today is better than yesterday!
+Make today better than yesterday!
 </title>
 <link>
 http://spradnyesh.github.io/
@@ -12,7 +12,7 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Thu, 18 Aug 2016 10:51:27 +0530
+Thu, 18 Aug 2016 11:58:17 +0530
 </lastBuildDate>
 <generator>
 clj-rss

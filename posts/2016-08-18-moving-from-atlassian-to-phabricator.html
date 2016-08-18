@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Make today better than yesterday!: Posts Tagged &quot;cryogen&quot;</title>
-    <link rel="canonical" href="http://spradnyesh.github.io/cryogen.html">
+    <title>Make today better than yesterday!: moving from atlassian products to phabricator</title>
+    <link rel="canonical" href="http://spradnyesh.github.io/posts/2016-08-18-moving-from-atlassian-to-phabricator.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
@@ -51,17 +51,58 @@
         <div class="col-lg-9">
             <div id="content">
                 
-<div id="posts-by-tag">
-    <div id="page-header">
-        <h2>Posts Tagged &quot;cryogen&quot;</h2>
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">August 18, 2016</div>
+        
     </div>
-    <ul>
+    <h2>moving from atlassian products to phabricator</h2>
+</div>
+<div>
     
-        <li>
-            <a href="/posts/2016-06-11-cryogen-on-github.html">cryogen based static site on github</a>
-        </li>
+    <p>one of the most important tools that one needs when setting up the infrastructure in a new-company/startup is a system that allows the following features</p><ul><li>user management</li><li>projects</li><li>wiki/documentation</li><li>ticketing (w/ support for sprints)</li><li>code repository hosting</li><li>code review</li><li>communication (chatting)</li><li>continuous-integration</li><li>integration of the above systems =><ul><li>able to reference documentation from ticket and vice-versa</li><li>able to reference ticket in commit message (automated)</li><li>able to reference code commit in ticket (automated)</li><li>able to reference doc/ticket/commit in chats</li><li>able to reference tickets in CI runs and vice-versa</li></ul></li></ul><p>while we've been using <a href='https://www.atlassian.com/'>atlassian</a> products (<a href='https://www.atlassian.com/software/jira'>jira</a>, <a href='https://www.atlassian.com/software/confluence'>confluence</a> and <a href='https://www.atlassian.com/software/bitbucket'>bitbucket</a>) for about 4-5 months now, it has become restrictive due to the following reasons</p><ul><li>paid costs escalate very quickly</li><li>critical components (like code-review) are absent or get missed if we try to keep costs under control</li></ul><p>due to this we started looking at alternatives, and <a href='https://www.phacility.com/phabricator/'>phabricator</a> turned out to be an awesome alternative due to</p><ul><li>support all needed features out-of-box (or via plugins like ([sprint][https://github.com/wikimedia/phabricator-extensions-Sprint]))</li><li>free to host (supports unlimited users)</li><li>excellent integration across its sub-systems</li><li>good <a href='https://secure.phabricator.com/book/phabricator/'>documentation</a></li><li>good support over <a href='http://stackoverflow.com/questions/tagged/phabricator'>stackoverflow</a>, etc</li></ul><p>i have started setting up the system, and will write another post shortly about the steps and hiccups. so stay tuned :)</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
     
-    </ul>
+    <a href="/atlassian.html">atlassian</a>
+    
+    <a href="/phabricator.html">phabricator</a>
+    
+    <a href="/bitbucket.html">bitbucket</a>
+    
+    <a href="/confluence.html">confluence</a>
+    
+    <a href="/jira.html">jira</a>
+    
+</div>
+
+
+    <div id="prev-next">
+        
+        
+        <a class="right" href="/posts/2016-07-08-default-value-for-input-when-using-reagent.html">Issue w/ default-value using reagent and rendering multiple times &raquo;</a>
+        
+    </div>
+
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_config = function () {
+            this.page.url = "http://spradnyesh.github.io/posts/2016-08-18-moving-from-atlassian-to-phabricator.html";
+            this.page.identifier = "moving from atlassian products to phabricator";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//spradnyesh.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    
+
+
 </div>
 
             </div>
