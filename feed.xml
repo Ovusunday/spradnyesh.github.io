@@ -12,7 +12,7 @@ http://spradnyesh.github.io/
 This blog is awesome
 </description>
 <lastBuildDate>
-Fri, 08 Jul 2016 17:35:48 +0530
+Thu, 18 Aug 2016 10:51:27 +0530
 </lastBuildDate>
 <generator>
 clj-rss
@@ -513,26 +513,6 @@ Tue, 28 Jan 2014 00:00:00 +0530
 </item>
 <item>
 <guid>
-http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
-</guid>
-<link>
-http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
-</link>
-<title>
-Golbin updates: bug fixes and new features
-</title>
-<description>
-&lt;p&gt;Hi! We hope that you are liking the various stories that you see here on &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;. We are always striving not only to bring you quality content that will interest you, but are also adding new features to the site. As we have mentioned previously &lt;a href='http://www.golb.in/lazyload-google-ads-without-jquery-lazyload-ad-plugin-27.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/more-exciting-new-features-for-golbin-25.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/speed-your-website-100-times-11.html'&gt;here&lt;/a&gt; and &lt;a href='http://www.golb.in/exciting-new-features-on-golbin-9.html'&gt;here&lt;/a&gt;, we have regularly added new features, and we sincerely hope that you like them :)&lt;/p&gt;&lt;/p&gt;&lt;p&gt;In today's release we have made the following changes:&lt;/p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;CSS fix&lt;/b&gt;: We have fixed some css issues (especially related to 'table', and 'li' elements) that made some of the articles look bad&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;image size&lt;/b&gt;: In the recent articles (&lt;a href='http://www.golb.in/org-mode-32.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/vimperator-part-2-31.html'&gt;here&lt;/a&gt;, etc), the images inside the article were of very small size (width = 300px) due to which they were not able to deliver the content that they were supposed to. This irritating issue has been fixed&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;future publish&lt;/b&gt;: We have added a new feature to the editorial site so that an author can enter any date-time in the future and publish the article. The article will get saved in the &quot;draft&quot; mode and will automatically be published on the said date-time. This will allow the authors to write stories in advance for an event and be rid of the worry of needing to publish it on the desired date-time. Ain't it cool?&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;auto archival&lt;/b&gt;: This is another great feature that we have added to the editorial site. Actually, to be honest, it always existed, but was not visible to authors due to a bug that has now been fixed. The feature is that every time an author publishes his article, it gets saved on the &lt;a href='http://web.archive.org'&gt;web.archive.org&lt;/a&gt; website. For example the last &lt;a href='http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;article&lt;/a&gt; got archived &lt;a href='http://web.archive.org/web/20140124145929/http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;here&lt;/a&gt;. This is an important feature because it will allow resolution of issues in case there is a plagiarism issue recorded (by or against &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;)&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If all this sounds great to you, do share it with others, and surely leave your comments/feedback. Better still, why don't you join us share your stories; after all that is why this website exists, doesn't it?&lt;/p&gt;&lt;/p&gt;
-</description>
-<enclosure>
-
-</enclosure>
-<pubDate>
-Mon, 27 Jan 2014 00:00:00 +0530
-</pubDate>
-</item>
-<item>
-<guid>
 http://spradnyesh.github.io/posts/2014-01-27-ml-302-intuition-for-univariate-linear-regression.html
 </guid>
 <link>
@@ -573,6 +553,26 @@ plot&amp;#40;theta, costs&amp;#41;;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;![]()&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#91;a, b&amp;#93; = min&amp;#40;costs&amp;#41;
 theta&amp;#40;b&amp;#41;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Our cost-function (J) is minimum (122.80) when theta = 0; but that is not the point. The point is that the above curve is a 'convex' curve, and has a global minimum. In the next post we are going to learn techniques to find this global minimum value, so keep watching this space for that!&lt;/p&gt;&lt;p&gt;I hope that the above explanation convinces you that:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;the cost function is defined in such a way that it has a global minimum (that needs to be found)&lt;/li&gt;&lt;li&gt;once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.&lt;/p&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Mon, 27 Jan 2014 00:00:00 +0530
+</pubDate>
+</item>
+<item>
+<guid>
+http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
+</guid>
+<link>
+http://spradnyesh.github.io/posts/2014-01-27-golbin-updates-bug-fixes-and-new-feature.html
+</link>
+<title>
+Golbin updates: bug fixes and new features
+</title>
+<description>
+&lt;p&gt;Hi! We hope that you are liking the various stories that you see here on &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;. We are always striving not only to bring you quality content that will interest you, but are also adding new features to the site. As we have mentioned previously &lt;a href='http://www.golb.in/lazyload-google-ads-without-jquery-lazyload-ad-plugin-27.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/more-exciting-new-features-for-golbin-25.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/speed-your-website-100-times-11.html'&gt;here&lt;/a&gt; and &lt;a href='http://www.golb.in/exciting-new-features-on-golbin-9.html'&gt;here&lt;/a&gt;, we have regularly added new features, and we sincerely hope that you like them :)&lt;/p&gt;&lt;/p&gt;&lt;p&gt;In today's release we have made the following changes:&lt;/p&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;CSS fix&lt;/b&gt;: We have fixed some css issues (especially related to 'table', and 'li' elements) that made some of the articles look bad&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;image size&lt;/b&gt;: In the recent articles (&lt;a href='http://www.golb.in/org-mode-32.html'&gt;here&lt;/a&gt;, &lt;a href='http://www.golb.in/vimperator-part-2-31.html'&gt;here&lt;/a&gt;, etc), the images inside the article were of very small size (width = 300px) due to which they were not able to deliver the content that they were supposed to. This irritating issue has been fixed&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;future publish&lt;/b&gt;: We have added a new feature to the editorial site so that an author can enter any date-time in the future and publish the article. The article will get saved in the &quot;draft&quot; mode and will automatically be published on the said date-time. This will allow the authors to write stories in advance for an event and be rid of the worry of needing to publish it on the desired date-time. Ain't it cool?&lt;/li&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;auto archival&lt;/b&gt;: This is another great feature that we have added to the editorial site. Actually, to be honest, it always existed, but was not visible to authors due to a bug that has now been fixed. The feature is that every time an author publishes his article, it gets saved on the &lt;a href='http://web.archive.org'&gt;web.archive.org&lt;/a&gt; website. For example the last &lt;a href='http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;article&lt;/a&gt; got archived &lt;a href='http://web.archive.org/web/20140124145929/http://www.golb.in/ml-302-intuition-for-univariate-linear-regression-39.html'&gt;here&lt;/a&gt;. This is an important feature because it will allow resolution of issues in case there is a plagiarism issue recorded (by or against &lt;a href='http://www.golb.in/'&gt;Golbin&lt;/a&gt;)&lt;/li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If all this sounds great to you, do share it with others, and surely leave your comments/feedback. Better still, why don't you join us share your stories; after all that is why this website exists, doesn't it?&lt;/p&gt;&lt;/p&gt;
 </description>
 <enclosure>
 
